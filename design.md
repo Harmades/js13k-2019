@@ -9,7 +9,7 @@ You move in a gravity-based environment. You have one jump only. You move quickl
 
 ## Graphics
 
-Graphics are round and flat like [this](https://codepen.io/desandro/pen/YebMXQ). Player;, platform elements should be composed of simple geometries.
+Graphics are round and flat like [this](https://codepen.io/desandro/pen/YebMXQ). Player, platform elements and props should be composed of simple geometries.
 
 ## Music
 
