@@ -10,7 +10,9 @@ You move in a gravity-based environment. You have one jump only. You move quickl
 ## Graphics
 
 Graphics are round and flat like [this](https://codepen.io/desandro/pen/YebMXQ). Player, platform elements and props should be composed of simple geometries.
+The world is a forest that should feel alive, with trees, plants and animals moving.
 
 ## Music
 
 Triggering a checkpoint plays a single note. Triggering all checkpoints in order produces a melody. The melody is the key of the level, every other sound should be more faint compared to the level melody.
+Level melody switches from custom-made melodies and famous ones.
