@@ -1,6 +1,7 @@
 let PlayerState = {
     Air: "air",
-    Ground: "ground"
+    Ground: "ground",
+    Wall : "wall"
 };
 
 let player = {
@@ -34,8 +35,8 @@ let platform2 = {
 
 let platform3 = {
     position: { x: 1000, y: 300 },
-    width: 500,
-    height: 75,
+    width: 75,
+    height: 500,
     checkpoint: { color: "green", triggering: false, triggered: false }
 };
 
@@ -83,11 +84,17 @@ let game = {
     delta: 0
 };
 
-function isAbove(player, platform) {
-    return player.position.x + player.width >= platform.position.x
-        && player.position.x <= platform.position.x + platform.width
-        && player.position.y == platform.position.y + platform.height; 
-}
+// function isAbove(player, platform) {
+//     return player.position.x + player.width >= platform.position.x
+//         && player.position.x <= platform.position.x + platform.width
+//         && player.position.y == platform.position.y + platform.height; 
+// }
+
+// function isNext(player, platform) {
+//     return player.position.y + player.height >= platform.position.y
+//         && player.position.y <= platform.position.y + platform.height
+//         && player.position.x == platform.position.x - platform.width;
+// }
 
 function getCollision(player, platform) {
     let dx1 = platform.position.x + platform.width - player.position.x;
@@ -109,41 +116,41 @@ function update(game) {
     let platforms = game.platforms;
 
     if (input.left) player.speed.x += -0.01 * delta;
-    else if (input.right) player.speed.x += 0.01 * delta;
-    else player.speed.x *= 0.50;
-    if (player.state == PlayerState.Air) player.speed.y += -0.01 * delta;
-    if (player.state == PlayerState.Ground && input.up) {
+    if (input.right) player.speed.x += 0.01 * delta;
+    if (!input.up && !input.down && !input.left && !input.right) player.speed.x *= 0.50;
+    if (player.state == PlayerState.Ground && input.up) player.speed.y = 2;
+    if (player.state == PlayerState.Wall && input.up) {
+        if (input.left) player.speed.x = 1;
+        if (input.right) player.speed.x = -1;
         player.speed.y = 2;
-        player.state = PlayerState.Air;
     }
+    player.speed.y += -0.01 * delta;
     player.position.x += player.speed.x * delta;
     player.position.y += player.speed.y * delta;
-    let noCollision = true;
+    let collide = false;
     for (let platform of platforms) {
         let collision = getCollision(player, platform);
         if (collision.collide) {
             if (Math.abs(collision.width) < Math.abs(collision.height)) {
                 player.speed.x = 0;
                 player.position.x += collision.width;
+                player.speed.y = -0.1;
+                player.state = PlayerState.Wall;
             }
             if (Math.abs(collision.height) < Math.abs(collision.width)) {
                 player.speed.y = 0;
                 player.position.y += collision.height;
-                if (collision.height > 0) {
-                    player.state = PlayerState.Ground;
-                }
+                if (collision.height > 0) player.state = PlayerState.Ground;
                 if (collision.height < 0) player.state = PlayerState.Air;
             }
-            noCollision = false;
-        }
-        if (isAbove(player, platform)) {
             platform.checkpoint.triggering = true;
-            platform.checkpoint.triggered = false;
+            platform.checkpoint.triggered = true;
+            collide = true;
         } else {
             platform.checkpoint.triggering = false;
         }
     }
-    if (noCollision) {
+    if (!collide) {
         player.state = PlayerState.Air;
     }
 }
