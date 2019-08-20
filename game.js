@@ -1,3 +1,22 @@
+let offsetY = (maxHeight, rectangle) => maxHeight - rectangle.height - rectangle.y;
+
+const radius = 10;
+
+function renderRoundedRectangle(context, x, y, width, height, fillStyle) {
+    context.beginPath();
+    context.moveTo(x, y + radius);
+    context.lineTo(x, y + height - radius);
+    context.arcTo(x, y + height, x + radius, y + height, radius);
+    context.lineTo(x + width - radius, y + height);
+    context.arcTo(x + width, y + height, x + width, y + height - radius, radius);
+    context.lineTo(x + width, y + radius);
+    context.arcTo(x + width, y, x + width - radius, y, radius);
+    context.lineTo(x + radius, y);
+    context.arcTo(x, y, x, y + radius, radius);
+    context.fillStyle = fillStyle;
+    context.fill();
+}
+
 let PlayerState = {
     Air: "air",
     Ground: "ground",
@@ -5,8 +24,10 @@ let PlayerState = {
 };
 
 let player = {
-    position: { x: 100, y: 800 },
-    speed: { x: 0, y: 0 },
+    x: 100,
+    y: 800,
+    dx: 0,
+    dy: 0,
     width: 75,
     height: 75,
     state: PlayerState.Air
@@ -14,21 +35,19 @@ let player = {
 
 function renderPlayer(context, player) {
     context.beginPath();
-    let x = player.position.x;
-    let y = context.canvas.height - player.height - player.position.y;
-    let height = player.height;
-    let width = player.width;
-    renderRoundedRectangle(context, x, y, width, height, "#9e579d");
+    let y = offsetY(context.canvas.height, player);
+    renderRoundedRectangle(context, player.x, y, player.width, player.height, "#9e579d");
     context.beginPath()
     context.fillStyle = "white"
-    let x2 = player.speed.x > 0 ? player.position.x + 4 / 5 * player.width : player.position.x + 1 / 5 * player.width;
-    context.ellipse(player.position.x + player.width / 2, context.canvas.height - 2 / 5 * player.height - player.position.y, 5, 15, 0, 0, 2 * Math.PI);
-    context.ellipse(x2, context.canvas.height - 2 / 5 * player.height - player.position.y, 5, 15, 0, 0, 2 * Math.PI);
+    let x2 = player.dx > 0 ? player.x + 4 / 5 * player.width : player.x + 1 / 5 * player.width;
+    context.ellipse(player.x + player.width / 2, context.canvas.height - 2 / 5 * player.height - player.y, 5, 15, 0, 0, 2 * Math.PI);
+    context.ellipse(x2, y + 3 / 5 * player.height, 5, 15, 0, 0, 2 * Math.PI);
     context.fill();
 }
 
 let platform = {
-    position: { x: 100, y: 100 },
+    x: 100,
+    y: 100,
     width: 200,
     height: 75,
     color: "red", 
@@ -39,7 +58,8 @@ let platform = {
 };
 
 let platform2 = {
-    position: { x: 300, y: 100 },
+    x: 300,
+    y: 100,
     width: 200,
     height: 75,
     color: "blue",
@@ -50,7 +70,8 @@ let platform2 = {
 };
 
 let platform3 = {
-    position: { x: 500, y: 100 },
+    x: 500,
+    y: 100,
     width: 200,
     height: 75,
     color: "green",
@@ -61,7 +82,8 @@ let platform3 = {
 };
 
 let platform4 = {
-    position: { x: 700, y: 100 },
+    x: 700,
+    y: 100,
     width: 200,
     height: 75,
     color: "green",
@@ -72,7 +94,8 @@ let platform4 = {
 };
 
 let platform5 = {
-    position: { x: 900, y: 100 },
+    x: 900,
+    y: 100,
     width: 200,
     height: 75,
     color: "green",
@@ -83,7 +106,8 @@ let platform5 = {
 };
 
 let platform6 = {
-    position: { x: 1100, y: 100 },
+    x: 1100,
+    y: 100,
     width: 200,
     height: 75,
     color: "green",
@@ -94,7 +118,8 @@ let platform6 = {
 };
 
 let platform7 = {
-    position: { x: 1300, y: 100 },
+    x: 1300,
+    y: 100,
     width: 200,
     height: 75,
     color: "green",
@@ -105,7 +130,8 @@ let platform7 = {
 };
 
 let platform8 = {
-    position: { x: 1500, y: 100 },
+    x: 1500,
+    y: 100,
     width: 200,
     height: 75,
     color: "green",
@@ -129,28 +155,13 @@ function playNote(context, value) {
     oscillator.stop(context.currentTime + 1);
 }
 
-function renderRoundedRectangle(context, x, y, width, height, fillStyle) {
-    let radius = 10;
-    context.beginPath();
-    context.moveTo(x, y + radius);
-    context.lineTo(x, y + height - radius);
-    context.arcTo(x, y + height, x + radius, y + height, radius);
-    context.lineTo(x + width - radius, y + height);
-    context.arcTo(x + width, y + height, x + width, y + height - radius, radius);
-    context.lineTo(x + width, y + radius);
-    context.arcTo(x + width, y, x + width - radius, y, radius);
-    context.lineTo(x + radius, y);
-    context.arcTo(x, y, x, y + radius, radius);
-    context.fillStyle = fillStyle;
-    context.fill();
-}
-
 function renderPlatform(context, platform) {
-    let x = platform.position.x;
-    let y = context.canvas.height - platform.height - platform.position.y;
-    let height = platform.height;
-    let width = platform.width;
-    renderRoundedRectangle(context, x, y, width, height, platform.triggering ? platform.color : "#303a52");
+    renderRoundedRectangle(context,
+        platform.x,
+        offsetY(context.canvas.height, platform),
+        platform.width,
+        platform.height,
+        platform.triggering ? platform.color : "#303a52");
     if (platform.playNote) playNote(audioContext, platform.note);
 }
 
@@ -292,20 +303,45 @@ let game = {
 };
 
 function getCollision(player, platform) {
-    let dx1 = platform.position.x + platform.width - player.position.x;
-    let dx2 = player.position.x + player.width - platform.position.x;
-    let dy1 = platform.position.y + platform.height - player.position.y;
-    let dy2 = player.position.y + player.height - platform.position.y;
+    let dx1 = platform.x + platform.width - player.x;
+    let dx2 = player.x + player.width - platform.x;
+    let dy1 = platform.y + platform.height - player.y;
+    let dy2 = player.y + player.height - platform.y;
     let collide = dx1 > 0 && dx2 > 0 && dy1 > 0 && dy2 > 0;
     return {
         collide: collide,
         width: Math.min(dx1, dx2),
         height: Math.min(dy1, dy2)
-        // width: dx1 < dx2 ? dx1 : -dx2,
-        // height: dy1 < dy2 ? dy1 : -dy2
-        // width: player.speed.x <= 0 ? dx1 : -dx2,
-        // height: player.speed.y <= 0 ? dy1 : -dy2
     };
+}
+
+function collide(player, platforms) {
+    let collisionMatch = null;
+    let platformMatch = null;
+    for (let platform of platforms) {
+        let collisionInfo = getCollision(player, platform);
+        if (collisionInfo.collide) {
+            if (platformMatch == null) {
+                collisionMatch = collisionInfo;
+                platformMatch = platform;
+            } else if (Math.abs(collisionInfo.width * collisionInfo.height) > Math.abs(collisionMatch.width * collisionMatch.height)) {
+                platformMatch.triggering = false;
+                platformMatch.playNote = false;
+                collisionMatch = collisionInfo;
+                platformMatch = platform;
+            } else {
+                platform.triggering = false;
+                platform.playNote = false;
+            }
+        } else {
+            platform.triggering = false;
+            platform.playNote = false;
+        }
+    }
+    return {
+        bestCollisionMatch: collisionMatch,
+        bestPlatformMatch: platformMatch
+    }
 }
 
 function update(game) {
@@ -315,57 +351,41 @@ function update(game) {
     let platforms = game.platforms;
 
     if (input.xAxis != null) {
-        if (input.xAxis < 0) player.speed.x += input.xAxis / 100 * delta;
-        if (input.xAxis > 0) player.speed.x += input.xAxis / 100 * delta;
+        if (input.xAxis < 0) player.dx += input.xAxis / 100 * delta;
+        if (input.xAxis > 0) player.dx += input.xAxis / 100 * delta;
     } else {
-        if (input.left) player.speed.x += -0.01 * delta;
-        if (input.right) player.speed.x += 0.01 * delta;
+        if (input.left) player.dx += -0.01 * delta;
+        if (input.right) player.dx += 0.01 * delta;
     }
-    if (!input.up && !input.down && !input.left && !input.right) player.speed.x *= 0.50;
-    if (player.state == PlayerState.Ground && input.up) player.speed.y = 2;
+    if (!input.up && !input.down && !input.left && !input.right) player.dx *= 0.50;
+    if (player.state == PlayerState.Ground && input.up) player.dy = 2;
     if (player.state == PlayerState.Wall && input.up) {
-        if (input.left) player.speed.x = 1;
-        if (input.right) player.speed.x = -1;
-        player.speed.y = 2;
+        if (input.left) player.dx = 1;
+        if (input.right) player.dx = -1;
+        player.dy = 2;
     }
-    player.speed.y += -0.01 * delta;
-    player.position.x += player.speed.x * delta;
-    player.position.y += player.speed.y * delta;
-    let bestCollisionMatch = null;
-    let collidingPlatform = null;
-    for (let platform of platforms) {
-        let collision = getCollision(player, platform);
-        if (collision.collide
-            && (bestCollisionMatch == null
-                || Math.abs(collision.width * collision.height) > Math.abs(bestCollisionMatch.width * bestCollisionMatch.height))) {
-            if (collidingPlatform != null) {
-                collidingPlatform.triggering = false;
-                collidingPlatform.playNote = false;
-            }
-            bestCollisionMatch = collision;
-            collidingPlatform = platform;
-        } else {
-            platform.triggering = false;
-            platform.playNote = false;
-        }
-    }
-    if (bestCollisionMatch != null) {
+    player.dy += -0.01 * delta;
+    player.x += player.dx * delta;
+    player.y += player.dy * delta;
+
+    let { bestCollisionMatch, bestPlatformMatch } = collide(player, platforms);
+
+    if (bestPlatformMatch != null) {
         if (Math.abs(bestCollisionMatch.width) < Math.abs(bestCollisionMatch.height)) {
-            player.speed.x = 0;
-            player.position.x += bestCollisionMatch.width;
-            player.speed.y = -0.1;
+            player.dx = 0;
+            player.x += bestCollisionMatch.width;
+            player.dy = -0.1;
             player.state = PlayerState.Wall;
         }
         if (Math.abs(bestCollisionMatch.height) < Math.abs(bestCollisionMatch.width)) {
-            player.speed.y = 0;
-            player.position.y += bestCollisionMatch.height;
+            player.dy = 0;
+            player.y += bestCollisionMatch.height;
             if (bestCollisionMatch.height > 0) player.state = PlayerState.Ground;
             if (bestCollisionMatch.height < 0) player.state = PlayerState.Air;
         }
-        if (!collidingPlatform.triggering) collidingPlatform.playNote = true;
-        if (collidingPlatform.triggering && collidingPlatform.playNote) collidingPlatform.playNote = false;
-        collidingPlatform.triggering = true;
-        collidingPlatform.triggered = true;
+        if (!bestPlatformMatch.triggering) bestPlatformMatch.playNote = true;
+        if (bestPlatformMatch.triggering && bestPlatformMatch.playNote) bestPlatformMatch.playNote = false;
+        bestPlatformMatch.triggering = true;
     } else {
         player.state = PlayerState.Air;
     }
