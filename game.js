@@ -25,7 +25,7 @@ let PlayerState = {
 
 let player = {
     x: 100,
-    y: 800,
+    y: 1080,
     dx: 0,
     dy: 0,
     width: 75,
@@ -44,102 +44,6 @@ function renderPlayer(context, player) {
     context.ellipse(x2, y + 3 / 5 * player.height, 5, 15, 0, 0, 2 * Math.PI);
     context.fill();
 }
-
-let platform = {
-    x: 100,
-    y: 100,
-    width: 200,
-    height: 75,
-    color: "red", 
-    triggering: false,
-    triggered: false,
-    playNote: false,
-    note: 523.25
-};
-
-let platform2 = {
-    x: 300,
-    y: 100,
-    width: 200,
-    height: 75,
-    color: "blue",
-    triggering: false,
-    triggered: false,
-    playNote: false,
-    note: 587.33
-};
-
-let platform3 = {
-    x: 500,
-    y: 100,
-    width: 200,
-    height: 75,
-    color: "green",
-    triggering: false, 
-    triggered: false,
-    playNote: false,
-    note: 659.25
-};
-
-let platform4 = {
-    x: 700,
-    y: 100,
-    width: 200,
-    height: 75,
-    color: "green",
-    triggering: false, 
-    triggered: false,
-    playNote: false,
-    note: 698.46
-};
-
-let platform5 = {
-    x: 900,
-    y: 100,
-    width: 200,
-    height: 75,
-    color: "green",
-    triggering: false, 
-    triggered: false,
-    playNote: false,
-    note: 783.99
-};
-
-let platform6 = {
-    x: 1100,
-    y: 100,
-    width: 200,
-    height: 75,
-    color: "green",
-    triggering: false, 
-    triggered: false,
-    playNote: false,
-    note: 880
-};
-
-let platform7 = {
-    x: 1300,
-    y: 100,
-    width: 200,
-    height: 75,
-    color: "green",
-    triggering: false, 
-    triggered: false,
-    playNote: false,
-    note: 987.77
-};
-
-let platform8 = {
-    x: 1500,
-    y: 100,
-    width: 200,
-    height: 75,
-    color: "green",
-    triggering: false, 
-    triggered: false,
-    playNote: false,
-    note: 1046.50
-};
 
 function playNote(context, value) {
     let oscillator = context.createOscillator();
@@ -293,7 +197,7 @@ function onKey(code, value) {
 
 let game = {
     player: player,
-    platforms: [platform, platform2, platform3, platform4, platform5, platform6, platform7, platform8],
+    platforms: level2,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
