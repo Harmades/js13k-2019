@@ -179,3 +179,72 @@ let level2 = [
         note: 880
     }
 ]
+
+let level3 = [
+    {
+        x: 50,
+        y: 100,
+        width: 300,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 830.61
+    },
+    {
+        x: 450,
+        y: 200,
+        width: 75,
+        height: 300,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 830.61
+    },
+    {
+        x: 200,
+        y: 400,
+        width: 75,
+        height: 300,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 830.61
+    },
+    {
+        x: 800,
+        y: 300,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 659.25
+    },
+    {
+        x: 1100,
+        y: 400,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 830.61
+    },
+    {
+        x: 1400,
+        y: 500,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 987.77
+    }
+]

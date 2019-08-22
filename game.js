@@ -197,7 +197,7 @@ function onKey(code, value) {
 
 let game = {
     player: player,
-    platforms: level2,
+    platforms: level3,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
@@ -214,8 +214,8 @@ function getCollision(player, platform) {
     let collide = dx1 > 0 && dx2 > 0 && dy1 > 0 && dy2 > 0;
     return {
         collide: collide,
-        width: Math.min(dx1, dx2),
-        height: Math.min(dy1, dy2)
+        width: dx1 < dx2 ? dx1 : -dx2,
+        height: dy1 < dy2 ? dy1 : -dy2
     };
 }
 
@@ -258,8 +258,8 @@ function update(game) {
         if (input.xAxis < 0) player.dx += input.xAxis / 100 * delta;
         if (input.xAxis > 0) player.dx += input.xAxis / 100 * delta;
     } else {
-        if (input.left) player.dx += -0.01 * delta;
-        if (input.right) player.dx += 0.01 * delta;
+        if (input.left) player.dx += -0.005 * delta;
+        if (input.right) player.dx += 0.005 * delta;
     }
     if (!input.up && !input.down && !input.left && !input.right) player.dx *= 0.50;
     if (player.state == PlayerState.Ground && input.up) player.dy = 2;
