@@ -248,3 +248,141 @@ let level3 = [
         note: 987.77
     }
 ]
+
+let level4 = [
+    {
+        x: 50,
+        y: 800,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 300,
+        y: 300,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 587.33
+    },
+    {
+        x: 550,
+        y: 400,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 698.46
+    },
+    {
+        x: 800,
+        y: 300,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 783.99
+    },
+    {
+        x: 1200,
+        y: 400,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 800,
+        y: 550,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 587.33
+    },
+    {
+        x: 1200,
+        y: 100,
+        width: 300,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 659.25
+    },
+]
+
+let level5 = [
+    {
+        x: 50,
+        y: 100,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 523.25
+    },    
+    {
+        x: 450,
+        y: 100,
+        width: 200,
+        height: 75,
+        color: "blue",
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 587.33
+    },    
+    {
+        x: 850,
+        y: 100,
+        width: 200,
+        height: 75,
+        color: "green",
+        triggering: false, 
+        triggered: false,
+        playNote: false,
+        note: 659.25
+    },    
+    {
+        x: 1250,
+        y: 100,
+        width: 200,
+        height: 75,
+        color: "green",
+        triggering: false, 
+        triggered: false,
+        playNote: false,
+        note: 739.99
+    },    
+    {
+        x: 1670,
+        y: 100,
+        width: 200,
+        height: 75,
+        color: "green",
+        triggering: false, 
+        triggered: false,
+        playNote: false,
+        note: 880
+    },    
+]
