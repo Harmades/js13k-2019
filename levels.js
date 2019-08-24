@@ -386,3 +386,149 @@ let level5 = [
         note: 880
     },    
 ]
+
+let level6 = [
+    {
+        x: 50,
+        y: 700,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 1046.50
+    },
+    {
+        x: 150,
+        y: 625,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 987.77
+    },
+    {
+        x: 250,
+        y: 550,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 350,
+        y: 550,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 450,
+        y: 625,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 987.77
+    },
+    {
+        x: 550,
+        y: 550,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 1046.50
+    },
+    {
+        x: 650,
+        y: 475,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 987.77
+    },
+    {
+        x: 750,
+        y: 400,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 850,
+        y: 400,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 950,
+        y: 475,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 987.77
+    },
+    {
+        x: 1100,
+        y: 100,
+        width: 500,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 783.99
+    },
+    {
+        x: 1650,
+        y: 200,
+        width: 75,
+        height: 300,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 1250,
+        y: 350,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 587.33
+    }
+]
