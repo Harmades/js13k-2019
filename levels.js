@@ -532,3 +532,72 @@ let level6 = [
         note: 587.33
     }
 ]
+
+let level7 = [
+    {
+        x: 50,
+        y: 600,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 900,
+        y: 500,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+    {
+        x: 1400,
+        y: 200,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 1046.50
+    },
+    {
+        x: 1300,
+        y: 150,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 698.46
+    },
+    {
+        x: 1200,
+        y: 100,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 783.99
+    },
+    {
+        x: 1100,
+        y: 50,
+        width: 100,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 880
+    },
+]

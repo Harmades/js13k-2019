@@ -197,7 +197,7 @@ function onKey(code, value) {
 
 let game = {
     player: player,
-    platforms: level6,
+    platforms: level7,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
