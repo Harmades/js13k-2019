@@ -192,12 +192,18 @@ function onKey(code, value) {
         case "BracketRight":
             if (value) playNote(audioContext, 1046.50);
             break;
+        case "KeyA":
+            if (value) playNote(audioContext, 1108.73);
+            break;
+        case "KeyS":
+            if (value) playNote(audioContext,  1174.66);
+            break;
     }
 }
 
 let game = {
     player: player,
-    platforms: level7,
+    platforms: level8,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,

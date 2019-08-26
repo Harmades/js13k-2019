@@ -601,3 +601,83 @@ let level7 = [
         note: 880
     },
 ]
+
+let level8 = [
+    {
+        x: 50,
+        y: 50,
+        width: 600,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 523.25
+    },
+    {
+        x: 650,
+        y: 125,
+        width: 75,
+        height: 300,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 1046.50
+    },
+    {
+        x: 250,
+        y: 300,
+        width: 200,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 783.99
+    },
+    {
+        x: 850,
+        y: 300,
+        width: 150,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 698.46
+    },
+    {
+        x: 1000,
+        y: 375,
+        width: 150,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 783.99
+    },
+    {
+        x: 1150,
+        y: 300,
+        width: 150,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 698.46
+    },
+    {
+        x: 1300,
+        y: 225,
+        width: 150,
+        height: 75,
+        color: "red", 
+        triggering: false,
+        triggered: false,
+        playNote: false,
+        note: 659.25
+    },
+]
