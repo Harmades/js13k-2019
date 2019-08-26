@@ -36,13 +36,17 @@ let player = {
 function renderPlayer(context, player) {
     context.beginPath();
     let y = offsetY(context.canvas.height, player);
+    context.shadowBlur = 10;
     renderRoundedRectangle(context, player.x, y, player.width, player.height, "#9e579d");
     context.beginPath()
     context.fillStyle = "white"
+    context.shadowColor = "white";
     let x2 = player.dx > 0 ? player.x + 4 / 5 * player.width : player.x + 1 / 5 * player.width;
     context.ellipse(player.x + player.width / 2, context.canvas.height - 2 / 5 * player.height - player.y, 5, 15, 0, 0, 2 * Math.PI);
     context.ellipse(x2, y + 3 / 5 * player.height, 5, 15, 0, 0, 2 * Math.PI);
     context.fill();
+    context.shadowColor = "black";
+    context.shadowBlur = 10;
 }
 
 function playNote(context, value) {
@@ -70,7 +74,7 @@ function renderPlatform(context, platform) {
 }
 
 function renderStar(context, x, y) {
-    context.beginPath()
+    context.beginPath();
     context.fillStyle = "white";
     context.moveTo(x + 25, y + 25);
     context.quadraticCurveTo(x + 50, y - 50, x + 75, y + 25);
@@ -98,6 +102,17 @@ function renderMoon(context) {
     context.fill();
 }
 
+function renderTree(context, x, y) {
+    let scale = 1;
+    context.beginPath();
+    context.fillStyle = "#9e579d";
+    context.moveTo(x, y);
+    context.quadraticCurveTo(x + 50 * scale, y + 25 * scale, x + 100 * scale, y);
+    context.quadraticCurveTo(x + 75 * scale, y - 75 * scale, x + 50 * scale, y - 100 * scale);
+    context.quadraticCurveTo(x + 25 * scale, y - 75 * scale, x, y);
+    context.fill();
+}
+
 function renderBackground(context) {
     context.beginPath()
     context.rect(0, 0, context.canvas.width, context.canvas.height);
@@ -112,6 +127,7 @@ function renderBackground(context) {
     scale = 0.2;
     context.scale(scale, scale);
     renderStar(context, 600 / scale, 400 / scale);
+    context.scale(1 / scale, 1 / scale);
 }
 
 let input = {
@@ -306,20 +322,25 @@ let backgroundCanvas = document.getElementById("background");
 backgroundCanvas.width = game.width;
 backgroundCanvas.height = game.height;
 let backgroundContext = backgroundCanvas.getContext("2d");
+backgroundContext.shadowColor = "black";
+backgroundContext.shadowBlur = 10;
 let playerCanvas = document.getElementById("player");
 playerCanvas.width = game.width;
 playerCanvas.height = game.height;
 let playerContext = playerCanvas.getContext("2d");
+playerContext.shadowColor = "black";
+playerContext.shadowBlur = 10;
 let audioContext = new AudioContext();
 renderBackground(backgroundContext);
+// renderTree(backgroundContext, 0, 0);
 
 function step(timestamp) {
     game.delta = timestamp - game.lastStep;
     playerContext.clearRect(0, 0, game.width, game.height);
     update(game);
     updateGamepadInput(input);
-    renderPlayer(playerContext, game.player);
     for (let platform of game.platforms) renderPlatform(playerContext, platform);
+    renderPlayer(playerContext, game.player);
     game.lastStep = timestamp;
     window.requestAnimationFrame(step);
 }
