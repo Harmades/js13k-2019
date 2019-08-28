@@ -31,16 +31,16 @@ let player = {
     state: PlayerState.Air
 };
 
-function renderPlayer(context, player) {
+function renderPlayer(context, player, level) {
     context.beginPath();
     let y = offsetY(context.canvas.height, player);
     context.shadowBlur = 10;
     renderRoundedRectangle(context, player.x, y, player.width, player.height);
-    context.fillStyle = "#9e579d";
+    context.fillStyle = level.color3;
     context.fill();
     context.beginPath()
-    context.fillStyle = "white"
-    context.shadowColor = "white";
+    context.fillStyle = level.color5;
+    context.shadowColor = level.color5;
     let x2 = player.dx > 0 ? player.x + 4 / 5 * player.width : player.x + 1 / 5 * player.width;
     context.ellipse(player.x + player.width / 2, context.canvas.height - 2 / 5 * player.height - player.y, 5, 15, 0, 0, 2 * Math.PI);
     context.ellipse(x2, y + 3 / 5 * player.height, 5, 15, 0, 0, 2 * Math.PI);
@@ -69,16 +69,9 @@ function renderAudio(context, platforms) {
 }
 
 function renderFx(context, game) {
-    for (let platform of game.platforms) {
-        if (platform.triggering) {
-            renderRoundedRectangle(context,
-                platform.x,
-                offsetY(context.canvas.height, platform),
-                platform.width,
-                platform.height);
-            context.fillStyle = platform.color;
-            context.fill();
-        }
+    for (i = 0; i < game.platforms.length; i++) {
+        let platform = game.platforms[i];
+        let color = game.level[`color${i % 3 + 3}`];
         if (platform.firstTrigger) {
             platform.wave = 0;
         }
@@ -92,27 +85,36 @@ function renderFx(context, game) {
                 offsetY(context.canvas.height, platform) - platform.wave,
                 platform.width + 2 * platform.wave,
                 platform.height + 2 * platform.wave);
-            context.strokeStyle = platform.color;
+            context.strokeStyle = color;
             context.lineWidth = 10;
             context.stroke();
             context.restore();
         }
+        if (platform.triggering) {
+            renderRoundedRectangle(context,
+                platform.x,
+                offsetY(context.canvas.height, platform),
+                platform.width,
+                platform.height);
+            context.fillStyle = color;
+            context.fill();
+        }
     }
 }
 
-function renderPlatform(context, platform) {
+function renderPlatform(context, platform, level) {
     renderRoundedRectangle(context,
         platform.x,
         offsetY(context.canvas.height, platform),
         platform.width,
         platform.height);
-    context.fillStyle = "#303a52";
+    context.fillStyle = level.color2;
     context.fill();
 }
 
-function renderStar(context, x, y) {
+function renderStar(context, x, y, level) {
     context.beginPath();
-    context.fillStyle = "white";
+    context.fillStyle = level.color5;
     context.moveTo(x + 25, y + 25);
     context.quadraticCurveTo(x + 50, y - 50, x + 75, y + 25);
     context.quadraticCurveTo(x + 150, y + 50, x + 75, y + 75);
@@ -121,19 +123,19 @@ function renderStar(context, x, y) {
     context.fill();
 }
 
-function renderMoon(context) {
+function renderMoon(context, level) {
     context.beginPath();
-    context.fillStyle = "#9e579d";
+    context.fillStyle = level.color3;
     context.moveTo(context.canvas.width / 2 + 200, 300);
     context.arc(context.canvas.width / 2, 300, 200, 0, 2 * Math.PI);
     context.fill();
     context.beginPath();
-    context.fillStyle = "#fc85ae";
+    context.fillStyle = level.color4;
     context.moveTo(context.canvas.width / 2 + 150, 300);
     context.arc(context.canvas.width / 2, 300, 150, 0, 2 * Math.PI);
     context.fill();
     context.beginPath();
-    context.fillStyle = "white";
+    context.fillStyle = level.color5;
     context.moveTo(context.canvas.width / 2 + 100, 300);
     context.arc(context.canvas.width / 2, 300, 100, 0, 2 * Math.PI);
     context.fill();
@@ -150,24 +152,24 @@ function renderTree(context, x, y) {
     context.fill();
 }
 
-function renderStaticBackground(context) {
+function renderStaticBackground(context, level) {
     context.beginPath()
     context.rect(0, 0, context.canvas.width, context.canvas.height);
-    context.fillStyle = "#574b90";
+    context.fillStyle = level.color1;
     context.fill();
 }
 
-function renderBackground(context) {
+function renderBackground(context, level) {
     context.beginPath()
-    renderMoon(context);
-    renderStar(context, 200, 150);
+    renderMoon(context, level);
+    renderStar(context, 200, 150, level);
     let scale = 0.5;
     context.scale(scale, scale);
-    renderStar(context, 1600 / scale, 200 / scale);
+    renderStar(context, 1600 / scale, 200 / scale, level);
     context.scale(1 / scale, 1 / scale);
     scale = 0.2;
     context.scale(scale, scale);
-    renderStar(context, 600 / scale, 400 / scale);
+    renderStar(context, 600 / scale, 400 / scale, level);
     context.scale(1 / scale, 1 / scale);
 }
 
@@ -260,7 +262,8 @@ function onKey(code, value) {
 
 let game = {
     player: player,
-    platforms: level8,
+    level: level8,
+    platforms: level8.platforms,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
@@ -385,9 +388,9 @@ let playerContext = playerCanvas.getContext("2d");
 playerContext.shadowColor = "black";
 playerContext.shadowBlur = 10;
 let audioContext = new AudioContext();
-renderStaticBackground(staticBackgroundContext);
-renderBackground(backgroundContext);
-for (let platform of game.platforms) renderPlatform(levelContext, platform);
+renderStaticBackground(staticBackgroundContext, game.level);
+renderBackground(backgroundContext, game.level);
+for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
 // renderTree(backgroundContext, 0, 0);
 
 function step(timestamp) {
@@ -396,7 +399,7 @@ function step(timestamp) {
     fxContext.clearRect(0, 0, game.width, game.height);
     update(game);
     updateGamepadInput(input);
-    renderPlayer(playerContext, game.player);
+    renderPlayer(playerContext, game.player, game.level);
     renderFx(fxContext, game);
     renderAudio(audioContext, game.platforms);
     game.lastStep = timestamp;

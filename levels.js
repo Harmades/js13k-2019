@@ -1,10 +1,9 @@
-let level1 = [
+let platforms1 = [
     {
         x: 50,
         y: 100,
         width: 200,
         height: 75,
-        color: "red", 
         note: 523.25
     },    
     {
@@ -12,7 +11,6 @@ let level1 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "blue",
         note: 587.33
     },    
     {
@@ -20,7 +18,6 @@ let level1 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         note: 659.25
     },    
     {
@@ -28,7 +25,6 @@ let level1 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         note: 698.46
     },    
     {
@@ -36,7 +32,6 @@ let level1 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         note: 783.99
     },    
     {
@@ -44,7 +39,6 @@ let level1 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         note: 880
     },    
     {
@@ -52,7 +46,6 @@ let level1 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         note: 987.77
     },    
     {
@@ -60,7 +53,6 @@ let level1 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         note: 1046.50
     },
     {
@@ -68,18 +60,25 @@ let level1 = [
         y: 50,
         width: 200,
         height: 75,
-        color: "green",
         note: 523.25
     }
 ];
 
-let level2 = [
+let level1 = {
+    platforms: platforms1,
+    color1: "#363b74",
+    color2: "#673888",
+    color3: "ef4f91",
+    color4: "#c79dd8",
+    color5: "#4d1b7b"
+}
+
+let platforms2 = [
     {
         x: 50,
         y: 800,
         width: 200,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -87,7 +86,6 @@ let level2 = [
         y: 550,
         width: 300,
         height: 75,
-        color: "red", 
         note: 739.99
     },
     {
@@ -95,7 +93,6 @@ let level2 = [
         y: 300,
         width: 200,
         height: 75,
-        color: "red", 
         note: 659.25
     },
     {
@@ -103,7 +100,6 @@ let level2 = [
         y: 100,
         width: 500,
         height: 75,
-        color: "red", 
         note: 587.33
     },
     {
@@ -111,7 +107,6 @@ let level2 = [
         y: 200,
         width: 200,
         height: 75,
-        color: "red", 
         note: 659.25
     },
     {
@@ -119,7 +114,6 @@ let level2 = [
         y: 300,
         width: 200,
         height: 75,
-        color: "red", 
         note: 739.99
     },
     {
@@ -127,18 +121,25 @@ let level2 = [
         y: 400,
         width: 200,
         height: 75,
-        color: "red", 
         note: 880
     }
 ]
 
-let level3 = [
+let level2 = {
+    platforms: platforms2,
+    color1: "#363b74",
+    color2: "#673888",
+    color3: "ef4f91",
+    color4: "#c79dd8",
+    color5: "#4d1b7b"
+}
+
+let platforms3 = [
     {
         x: 50,
         y: 100,
         width: 300,
         height: 75,
-        color: "red", 
         note: 830.61
     },
     {
@@ -146,7 +147,6 @@ let level3 = [
         y: 200,
         width: 75,
         height: 300,
-        color: "red", 
         note: 830.61
     },
     {
@@ -154,7 +154,6 @@ let level3 = [
         y: 400,
         width: 75,
         height: 300,
-        color: "red", 
         note: 830.61
     },
     {
@@ -162,7 +161,6 @@ let level3 = [
         y: 300,
         width: 200,
         height: 75,
-        color: "red", 
         note: 659.25
     },
     {
@@ -170,7 +168,6 @@ let level3 = [
         y: 400,
         width: 200,
         height: 75,
-        color: "red", 
         note: 830.61
     },
     {
@@ -178,18 +175,25 @@ let level3 = [
         y: 500,
         width: 200,
         height: 75,
-        color: "red", 
         note: 987.77
     }
 ]
 
-let level4 = [
+let level3 = {
+    platforms: platforms3,
+    color1: "#363b74",
+    color2: "#673888",
+    color3: "ef4f91",
+    color4: "#c79dd8",
+    color5: "#4d1b7b"
+}
+
+let platforms4 = [
     {
         x: 50,
         y: 800,
         width: 200,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -197,7 +201,6 @@ let level4 = [
         y: 300,
         width: 200,
         height: 75,
-        color: "red", 
         note: 587.33
     },
     {
@@ -205,7 +208,6 @@ let level4 = [
         y: 400,
         width: 200,
         height: 75,
-        color: "red", 
         note: 698.46
     },
     {
@@ -213,7 +215,6 @@ let level4 = [
         y: 300,
         width: 200,
         height: 75,
-        color: "red", 
         note: 783.99
     },
     {
@@ -221,7 +222,6 @@ let level4 = [
         y: 400,
         width: 200,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -229,7 +229,6 @@ let level4 = [
         y: 550,
         width: 200,
         height: 75,
-        color: "red", 
         note: 587.33
     },
     {
@@ -237,18 +236,25 @@ let level4 = [
         y: 100,
         width: 300,
         height: 75,
-        color: "red", 
         note: 659.25
     },
 ]
 
-let level5 = [
+let level4 = {
+    platforms: platforms4,
+    color1: "#363b74",
+    color2: "#673888",
+    color3: "ef4f91",
+    color4: "#c79dd8",
+    color5: "#4d1b7b"
+}
+
+let platforms5 = [
     {
         x: 50,
         y: 100,
         width: 200,
         height: 75,
-        color: "red", 
         note: 523.25
     },    
     {
@@ -256,7 +262,6 @@ let level5 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "blue",
         note: 587.33
     },    
     {
@@ -264,7 +269,6 @@ let level5 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         triggering: false, 
         triggered: false,
         playNote: false,
@@ -275,7 +279,6 @@ let level5 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         triggering: false, 
         triggered: false,
         playNote: false,
@@ -286,7 +289,6 @@ let level5 = [
         y: 100,
         width: 200,
         height: 75,
-        color: "green",
         triggering: false, 
         triggered: false,
         playNote: false,
@@ -294,13 +296,21 @@ let level5 = [
     },    
 ]
 
-let level6 = [
+let level5 = {
+    platforms: platforms5,
+    color1: "#363b74",
+    color2: "#673888",
+    color3: "ef4f91",
+    color4: "#c79dd8",
+    color5: "#4d1b7b"
+}
+
+let platforms6 = [
     {
         x: 50,
         y: 700,
         width: 100,
         height: 75,
-        color: "red", 
         note: 1046.50
     },
     {
@@ -308,7 +318,6 @@ let level6 = [
         y: 625,
         width: 100,
         height: 75,
-        color: "red", 
         note: 987.77
     },
     {
@@ -316,7 +325,6 @@ let level6 = [
         y: 550,
         width: 100,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -324,7 +332,6 @@ let level6 = [
         y: 550,
         width: 100,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -332,7 +339,6 @@ let level6 = [
         y: 625,
         width: 100,
         height: 75,
-        color: "red", 
         note: 987.77
     },
     {
@@ -340,7 +346,6 @@ let level6 = [
         y: 550,
         width: 100,
         height: 75,
-        color: "red", 
         note: 1046.50
     },
     {
@@ -348,7 +353,6 @@ let level6 = [
         y: 475,
         width: 100,
         height: 75,
-        color: "red", 
         note: 987.77
     },
     {
@@ -356,7 +360,6 @@ let level6 = [
         y: 400,
         width: 100,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -364,7 +367,6 @@ let level6 = [
         y: 400,
         width: 100,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -372,7 +374,6 @@ let level6 = [
         y: 475,
         width: 100,
         height: 75,
-        color: "red", 
         note: 987.77
     },
     {
@@ -380,7 +381,6 @@ let level6 = [
         y: 100,
         width: 500,
         height: 75,
-        color: "red", 
         note: 783.99
     },
     {
@@ -388,7 +388,6 @@ let level6 = [
         y: 200,
         width: 75,
         height: 300,
-        color: "red", 
         note: 880
     },
     {
@@ -396,18 +395,25 @@ let level6 = [
         y: 350,
         width: 200,
         height: 75,
-        color: "red", 
         note: 587.33
     }
 ]
 
-let level7 = [
+let level6 = {
+    platforms: platforms6,
+    color1: "#363b74",
+    color2: "#673888",
+    color3: "ef4f91",
+    color4: "#c79dd8",
+    color5: "#4d1b7b"
+}
+
+let platforms7 = [
     {
         x: 50,
         y: 600,
         width: 100,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -415,7 +421,6 @@ let level7 = [
         y: 500,
         width: 100,
         height: 75,
-        color: "red", 
         note: 880
     },
     {
@@ -423,7 +428,6 @@ let level7 = [
         y: 200,
         width: 100,
         height: 75,
-        color: "red", 
         note: 1046.50
     },
     {
@@ -431,7 +435,6 @@ let level7 = [
         y: 150,
         width: 100,
         height: 75,
-        color: "red", 
         note: 698.46
     },
     {
@@ -439,7 +442,6 @@ let level7 = [
         y: 100,
         width: 100,
         height: 75,
-        color: "red", 
         note: 783.99
     },
     {
@@ -447,18 +449,25 @@ let level7 = [
         y: 50,
         width: 100,
         height: 75,
-        color: "red", 
         note: 880
     },
 ]
 
-let level8 = [
+let level7 = {
+    platforms: platforms7,
+    color1: "#363b74",
+    color2: "#673888",
+    color3: "ef4f91",
+    color4: "#c79dd8",
+    color5: "#4d1b7b"
+}
+
+let platforms8 = [
     {
         x: 50,
         y: 50,
         width: 600,
         height: 75,
-        color: "red", 
         note: 523.25
     },
     {
@@ -466,7 +475,6 @@ let level8 = [
         y: 125,
         width: 75,
         height: 300,
-        color: "red", 
         note: 1046.50
     },
     {
@@ -474,7 +482,6 @@ let level8 = [
         y: 300,
         width: 200,
         height: 75,
-        color: "red", 
         note: 783.99
     },
     {
@@ -482,7 +489,6 @@ let level8 = [
         y: 300,
         width: 150,
         height: 75,
-        color: "red", 
         note: 698.46
     },
     {
@@ -490,7 +496,6 @@ let level8 = [
         y: 375,
         width: 150,
         height: 75,
-        color: "red", 
         note: 783.99
     },
     {
@@ -498,7 +503,6 @@ let level8 = [
         y: 300,
         width: 150,
         height: 75,
-        color: "red", 
         note: 698.46
     },
     {
@@ -506,7 +510,20 @@ let level8 = [
         y: 225,
         width: 150,
         height: 75,
-        color: "red", 
         note: 659.25
     },
 ]
+
+let level8 = {
+    platforms: platforms8,
+    // color1: "#363b74",
+    // color2: "#4d1b7b",
+    // color3: "#673888",
+    // color4: "#ef4f91",
+    // color5: "#c79dd8"
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
+}
