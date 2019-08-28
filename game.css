@@ -5,7 +5,7 @@ body {
     margin: 0px;
 }
 
-#background, #player, #fx, #ui {
+#background, #static-background, #level, #player, #fx, #ui {
     position: absolute;
     top: 0px;
     left: 0px;

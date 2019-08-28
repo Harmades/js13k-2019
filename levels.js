@@ -5,9 +5,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 523.25
     },    
     {
@@ -16,9 +13,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "blue",
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 587.33
     },    
     {
@@ -27,9 +21,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "green",
-        triggering: false, 
-        triggered: false,
-        playNote: false,
         note: 659.25
     },    
     {
@@ -38,9 +29,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "green",
-        triggering: false, 
-        triggered: false,
-        playNote: false,
         note: 698.46
     },    
     {
@@ -49,9 +37,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "green",
-        triggering: false, 
-        triggered: false,
-        playNote: false,
         note: 783.99
     },    
     {
@@ -60,9 +45,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "green",
-        triggering: false, 
-        triggered: false,
-        playNote: false,
         note: 880
     },    
     {
@@ -71,9 +53,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "green",
-        triggering: false, 
-        triggered: false,
-        playNote: false,
         note: 987.77
     },    
     {
@@ -82,9 +61,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "green",
-        triggering: false, 
-        triggered: false,
-        playNote: false,
         note: 1046.50
     },
     {
@@ -93,9 +69,6 @@ let level1 = [
         width: 200,
         height: 75,
         color: "green",
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 523.25
     }
 ];
@@ -107,9 +80,6 @@ let level2 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -118,9 +88,6 @@ let level2 = [
         width: 300,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 739.99
     },
     {
@@ -129,9 +96,6 @@ let level2 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 659.25
     },
     {
@@ -140,9 +104,6 @@ let level2 = [
         width: 500,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 587.33
     },
     {
@@ -151,9 +112,6 @@ let level2 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 659.25
     },
     {
@@ -162,9 +120,6 @@ let level2 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 739.99
     },
     {
@@ -173,9 +128,6 @@ let level2 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     }
 ]
@@ -187,9 +139,6 @@ let level3 = [
         width: 300,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 830.61
     },
     {
@@ -198,9 +147,6 @@ let level3 = [
         width: 75,
         height: 300,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 830.61
     },
     {
@@ -209,9 +155,6 @@ let level3 = [
         width: 75,
         height: 300,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 830.61
     },
     {
@@ -220,9 +163,6 @@ let level3 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 659.25
     },
     {
@@ -231,9 +171,6 @@ let level3 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 830.61
     },
     {
@@ -242,9 +179,6 @@ let level3 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 987.77
     }
 ]
@@ -256,9 +190,6 @@ let level4 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -267,9 +198,6 @@ let level4 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 587.33
     },
     {
@@ -278,9 +206,6 @@ let level4 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 698.46
     },
     {
@@ -289,9 +214,6 @@ let level4 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 783.99
     },
     {
@@ -300,9 +222,6 @@ let level4 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -311,9 +230,6 @@ let level4 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 587.33
     },
     {
@@ -322,9 +238,6 @@ let level4 = [
         width: 300,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 659.25
     },
 ]
@@ -336,9 +249,6 @@ let level5 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 523.25
     },    
     {
@@ -347,9 +257,6 @@ let level5 = [
         width: 200,
         height: 75,
         color: "blue",
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 587.33
     },    
     {
@@ -394,9 +301,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 1046.50
     },
     {
@@ -405,9 +309,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 987.77
     },
     {
@@ -416,9 +317,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -427,9 +325,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -438,9 +333,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 987.77
     },
     {
@@ -449,9 +341,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 1046.50
     },
     {
@@ -460,9 +349,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 987.77
     },
     {
@@ -471,9 +357,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -482,9 +365,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -493,9 +373,6 @@ let level6 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 987.77
     },
     {
@@ -504,9 +381,6 @@ let level6 = [
         width: 500,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 783.99
     },
     {
@@ -515,9 +389,6 @@ let level6 = [
         width: 75,
         height: 300,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -526,9 +397,6 @@ let level6 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 587.33
     }
 ]
@@ -540,9 +408,6 @@ let level7 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -551,9 +416,6 @@ let level7 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
     {
@@ -562,9 +424,6 @@ let level7 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 1046.50
     },
     {
@@ -573,9 +432,6 @@ let level7 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 698.46
     },
     {
@@ -584,9 +440,6 @@ let level7 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 783.99
     },
     {
@@ -595,9 +448,6 @@ let level7 = [
         width: 100,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 880
     },
 ]
@@ -609,9 +459,6 @@ let level8 = [
         width: 600,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 523.25
     },
     {
@@ -620,9 +467,6 @@ let level8 = [
         width: 75,
         height: 300,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 1046.50
     },
     {
@@ -631,9 +475,6 @@ let level8 = [
         width: 200,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 783.99
     },
     {
@@ -642,9 +483,6 @@ let level8 = [
         width: 150,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 698.46
     },
     {
@@ -653,9 +491,6 @@ let level8 = [
         width: 150,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 783.99
     },
     {
@@ -664,9 +499,6 @@ let level8 = [
         width: 150,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 698.46
     },
     {
@@ -675,9 +507,6 @@ let level8 = [
         width: 150,
         height: 75,
         color: "red", 
-        triggering: false,
-        triggered: false,
-        playNote: false,
         note: 659.25
     },
 ]

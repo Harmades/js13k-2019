@@ -2,7 +2,7 @@ let offsetY = (maxHeight, rectangle) => maxHeight - rectangle.height - rectangle
 
 const radius = 10;
 
-function renderRoundedRectangle(context, x, y, width, height, fillStyle) {
+function renderRoundedRectangle(context, x, y, width, height) {
     context.beginPath();
     context.moveTo(x, y + radius);
     context.lineTo(x, y + height - radius);
@@ -13,8 +13,6 @@ function renderRoundedRectangle(context, x, y, width, height, fillStyle) {
     context.arcTo(x + width, y, x + width - radius, y, radius);
     context.lineTo(x + radius, y);
     context.arcTo(x, y, x, y + radius, radius);
-    context.fillStyle = fillStyle;
-    context.fill();
 }
 
 let PlayerState = {
@@ -37,7 +35,9 @@ function renderPlayer(context, player) {
     context.beginPath();
     let y = offsetY(context.canvas.height, player);
     context.shadowBlur = 10;
-    renderRoundedRectangle(context, player.x, y, player.width, player.height, "#9e579d");
+    renderRoundedRectangle(context, player.x, y, player.width, player.height);
+    context.fillStyle = "#9e579d";
+    context.fill();
     context.beginPath()
     context.fillStyle = "white"
     context.shadowColor = "white";
@@ -63,14 +63,51 @@ function playNote(context, value) {
     oscillator.stop(context.currentTime + 1);
 }
 
+function renderAudio(context, platforms) {
+    for (let platform of platforms)
+        if (platform.firstTrigger) playNote(context, platform.note);
+}
+
+function renderFx(context, game) {
+    for (let platform of game.platforms) {
+        if (platform.triggering) {
+            renderRoundedRectangle(context,
+                platform.x,
+                offsetY(context.canvas.height, platform),
+                platform.width,
+                platform.height);
+            context.fillStyle = platform.color;
+            context.fill();
+        }
+        if (platform.firstTrigger) {
+            platform.wave = 0;
+        }
+        if (platform.wave !== undefined) {
+            platform.wave += game.delta * 0.2;
+            context.save();
+            context.globalAlpha = 1 - platform.wave / 100;
+            if (platform.wave >= 100) platform.wave = undefined; 
+            renderRoundedRectangle(context,
+                platform.x - platform.wave,
+                offsetY(context.canvas.height, platform) - platform.wave,
+                platform.width + 2 * platform.wave,
+                platform.height + 2 * platform.wave);
+            context.strokeStyle = platform.color;
+            context.lineWidth = 10;
+            context.stroke();
+            context.restore();
+        }
+    }
+}
+
 function renderPlatform(context, platform) {
     renderRoundedRectangle(context,
         platform.x,
         offsetY(context.canvas.height, platform),
         platform.width,
-        platform.height,
-        platform.triggering ? platform.color : "#303a52");
-    if (platform.playNote) playNote(audioContext, platform.note);
+        platform.height);
+    context.fillStyle = "#303a52";
+    context.fill();
 }
 
 function renderStar(context, x, y) {
@@ -113,11 +150,15 @@ function renderTree(context, x, y) {
     context.fill();
 }
 
-function renderBackground(context) {
+function renderStaticBackground(context) {
     context.beginPath()
     context.rect(0, 0, context.canvas.width, context.canvas.height);
     context.fillStyle = "#574b90";
     context.fill();
+}
+
+function renderBackground(context) {
+    context.beginPath()
     renderMoon(context);
     renderStar(context, 200, 150);
     let scale = 0.5;
@@ -170,49 +211,49 @@ function onKey(code, value) {
             input.down = value;
             break;
         case "KeyQ":
-            if (value) playNote(audioContext, 523.25);
+            if (value) firstTrigger(audioContext, 523.25);
             break;
         case "KeyW":
-            if (value) playNote(audioContext, 554.37);
+            if (value) firstTrigger(audioContext, 554.37);
             break;
         case "KeyE":
-            if (value) playNote(audioContext, 587.33);
+            if (value) firstTrigger(audioContext, 587.33);
             break;
         case "KeyR":
-            if (value) playNote(audioContext, 622.25);
+            if (value) firstTrigger(audioContext, 622.25);
             break;
         case "KeyT":
-            if (value) playNote(audioContext, 659.25);
+            if (value) firstTrigger(audioContext, 659.25);
             break;
         case "KeyY":
-            if (value) playNote(audioContext, 698.46);
+            if (value) firstTrigger(audioContext, 698.46);
             break;
         case "KeyU":
-            if (value) playNote(audioContext, 739.99);
+            if (value) firstTrigger(audioContext, 739.99);
             break;
         case "KeyI":
-            if (value) playNote(audioContext, 783.99);
+            if (value) firstTrigger(audioContext, 783.99);
             break;
         case "KeyO":
-            if (value) playNote(audioContext, 830.61);
+            if (value) firstTrigger(audioContext, 830.61);
             break;
         case "KeyP":
-            if (value) playNote(audioContext, 880);
+            if (value) firstTrigger(audioContext, 880);
             break;
         case "KeyP":
-            if (value) playNote(audioContext, 932.33);
+            if (value) firstTrigger(audioContext, 932.33);
             break;
         case "BracketLeft":
-            if (value) playNote(audioContext, 987.77);
+            if (value) firstTrigger(audioContext, 987.77);
             break;
         case "BracketRight":
-            if (value) playNote(audioContext, 1046.50);
+            if (value) firstTrigger(audioContext, 1046.50);
             break;
         case "KeyA":
-            if (value) playNote(audioContext, 1108.73);
+            if (value) firstTrigger(audioContext, 1108.73);
             break;
         case "KeyS":
-            if (value) playNote(audioContext,  1174.66);
+            if (value) firstTrigger(audioContext,  1174.66);
             break;
     }
 }
@@ -252,16 +293,16 @@ function collide(player, platforms) {
                 platformMatch = platform;
             } else if (Math.abs(collisionInfo.width * collisionInfo.height) > Math.abs(collisionMatch.width * collisionMatch.height)) {
                 platformMatch.triggering = false;
-                platformMatch.playNote = false;
+                platformMatch.firstTrigger = false;
                 collisionMatch = collisionInfo;
                 platformMatch = platform;
             } else {
                 platform.triggering = false;
-                platform.playNote = false;
+                platform.firstTrigger = false;
             }
         } else {
             platform.triggering = false;
-            platform.playNote = false;
+            platform.firstTrigger = false;
         }
     }
     return {
@@ -309,21 +350,34 @@ function update(game) {
             if (bestCollisionMatch.height > 0) player.state = PlayerState.Ground;
             if (bestCollisionMatch.height < 0) player.state = PlayerState.Air;
         }
-        if (!bestPlatformMatch.triggering) bestPlatformMatch.playNote = true;
-        if (bestPlatformMatch.triggering && bestPlatformMatch.playNote) bestPlatformMatch.playNote = false;
+        if (!bestPlatformMatch.triggering) bestPlatformMatch.firstTrigger = true;
+        if (bestPlatformMatch.triggering && bestPlatformMatch.firstTrigger) bestPlatformMatch.firstTrigger = false;
         bestPlatformMatch.triggering = true;
     } else {
         player.state = PlayerState.Air;
     }
 }
 
-
+let staticBackgroundCanvas = document.getElementById("static-background");
+staticBackgroundCanvas.width = game.width;
+staticBackgroundCanvas.height = game.height;
+let staticBackgroundContext = staticBackgroundCanvas.getContext("2d");
 let backgroundCanvas = document.getElementById("background");
 backgroundCanvas.width = game.width;
 backgroundCanvas.height = game.height;
 let backgroundContext = backgroundCanvas.getContext("2d");
 backgroundContext.shadowColor = "black";
 backgroundContext.shadowBlur = 10;
+let levelCanvas = document.getElementById("level");
+levelCanvas.width = game.width;
+levelCanvas.height = game.height;
+let levelContext = levelCanvas.getContext("2d");
+levelContext.shadowColor = "black";
+levelContext.shadowBlur = 10;
+let fxCanvas = document.getElementById("fx");
+fxCanvas.width = game.width;
+fxCanvas.height = game.height;
+let fxContext = fxCanvas.getContext("2d");
 let playerCanvas = document.getElementById("player");
 playerCanvas.width = game.width;
 playerCanvas.height = game.height;
@@ -331,16 +385,20 @@ let playerContext = playerCanvas.getContext("2d");
 playerContext.shadowColor = "black";
 playerContext.shadowBlur = 10;
 let audioContext = new AudioContext();
+renderStaticBackground(staticBackgroundContext);
 renderBackground(backgroundContext);
+for (let platform of game.platforms) renderPlatform(levelContext, platform);
 // renderTree(backgroundContext, 0, 0);
 
 function step(timestamp) {
     game.delta = timestamp - game.lastStep;
     playerContext.clearRect(0, 0, game.width, game.height);
+    fxContext.clearRect(0, 0, game.width, game.height);
     update(game);
     updateGamepadInput(input);
-    for (let platform of game.platforms) renderPlatform(playerContext, platform);
     renderPlayer(playerContext, game.player);
+    renderFx(fxContext, game);
+    renderAudio(audioContext, game.platforms);
     game.lastStep = timestamp;
     window.requestAnimationFrame(step);
 }
