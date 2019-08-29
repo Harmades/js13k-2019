@@ -198,6 +198,35 @@ function updateGamepadInput(input) {
     }
 }
 
+function walkthrough(game) {
+    let current = null;
+    let currentPlatform = null;
+    let acc = 0;
+    for (i = 0; i < game.platforms.length; i++) {
+        let platform = game.platforms[i];
+        acc += platform.time;
+        if (game.walkthroughTime / 500 >= acc) {
+            if (currentPlatform != null) {
+                currentPlatform.triggering = false;
+                currentPlatform.firstTrigger = false;
+            }
+            if (platform.triggering) {
+                platform.firstTrigger = false;
+            } else {
+                platform.triggering = true;
+                platform.firstTrigger = true;
+            }
+            currentPlatform = platform;
+            current = i;
+        }
+    }
+    if ((current == game.platforms.length - 1) && game.walkthroughTime / 500 >= acc + 2) {
+        currentPlatform.triggering = false;
+        currentPlatform.firstTrigger = false;
+        game.state = GameState.Playing;
+    }
+}
+
 function onKey(code, value) {
     switch (code) {
         case "ArrowLeft":
@@ -257,7 +286,17 @@ function onKey(code, value) {
         case "KeyS":
             if (value) firstTrigger(audioContext,  1174.66);
             break;
+        case "KeyZ":
+            if (!value) {
+                game.state = GameState.Walkthrough;
+                game.walkthroughTime = 0;
+            }
     }
+}
+
+let GameState = {
+    Walkthrough: "Walkthrough",
+    Playing: "Playing"
 }
 
 let game = {
@@ -267,9 +306,10 @@ let game = {
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
-    currentStep: 0,
     lastStep: 0,
-    delta: 0
+    delta: 0,
+    state: GameState.Playing,
+    walkthroughTime: 0
 };
 
 function getCollision(player, platform) {
@@ -395,11 +435,17 @@ for (let platform of game.platforms) renderPlatform(levelContext, platform, game
 
 function step(timestamp) {
     game.delta = timestamp - game.lastStep;
-    playerContext.clearRect(0, 0, game.width, game.height);
     fxContext.clearRect(0, 0, game.width, game.height);
-    update(game);
-    updateGamepadInput(input);
-    renderPlayer(playerContext, game.player, game.level);
+    if (game.state == GameState.Playing) {
+        playerContext.clearRect(0, 0, game.width, game.height);
+        update(game);
+        updateGamepadInput(input);
+        renderPlayer(playerContext, game.player, game.level);
+    }
+    if (game.state == GameState.Walkthrough) {
+        game.walkthroughTime += game.delta;
+        walkthrough(game);
+    }
     renderFx(fxContext, game);
     renderAudio(audioContext, game.platforms);
     game.lastStep = timestamp;

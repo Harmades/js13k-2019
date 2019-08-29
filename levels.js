@@ -4,73 +4,82 @@ let platforms1 = [
         y: 100,
         width: 200,
         height: 75,
-        note: 523.25
+        note: 523.25,
+        time: 1
     },    
     {
         x: 250,
         y: 100,
         width: 200,
         height: 75,
-        note: 587.33
-    },    
+        note: 587.33,
+        time: 1
+    },
     {
         x: 450,
         y: 100,
         width: 200,
         height: 75,
-        note: 659.25
-    },    
+        note: 659.25,
+        time: 1
+    },
     {
         x: 650,
         y: 100,
         width: 200,
         height: 75,
-        note: 698.46
-    },    
+        note: 698.46,
+        time: 1
+    },
     {
         x: 850,
         y: 100,
         width: 200,
         height: 75,
-        note: 783.99
-    },    
+        note: 783.99,
+        time: 1
+    },
     {
         x: 1050,
         y: 100,
         width: 200,
         height: 75,
-        note: 880
-    },    
+        note: 880,
+        time: 1
+    },
     {
         x: 1250,
         y: 100,
         width: 200,
         height: 75,
-        note: 987.77
-    },    
+        note: 987.77,
+        time: 1
+    },
     {
         x: 1450,
         y: 100,
         width: 200,
         height: 75,
-        note: 1046.50
+        note: 1046.50,
+        time: 1
     },
     {
         x: 1670,
         y: 50,
         width: 200,
         height: 75,
-        note: 523.25
+        note: 523.25,
+        time: 1
     }
 ];
 
 let level1 = {
     platforms: platforms1,
-    color1: "#363b74",
-    color2: "#673888",
-    color3: "ef4f91",
-    color4: "#c79dd8",
-    color5: "#4d1b7b"
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
 }
 
 let platforms2 = [
@@ -127,11 +136,11 @@ let platforms2 = [
 
 let level2 = {
     platforms: platforms2,
-    color1: "#363b74",
-    color2: "#673888",
-    color3: "ef4f91",
-    color4: "#c79dd8",
-    color5: "#4d1b7b"
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
 }
 
 let platforms3 = [
@@ -181,11 +190,11 @@ let platforms3 = [
 
 let level3 = {
     platforms: platforms3,
-    color1: "#363b74",
-    color2: "#673888",
-    color3: "ef4f91",
-    color4: "#c79dd8",
-    color5: "#4d1b7b"
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
 }
 
 let platforms4 = [
@@ -242,11 +251,11 @@ let platforms4 = [
 
 let level4 = {
     platforms: platforms4,
-    color1: "#363b74",
-    color2: "#673888",
-    color3: "ef4f91",
-    color4: "#c79dd8",
-    color5: "#4d1b7b"
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
 }
 
 let platforms5 = [
@@ -298,11 +307,11 @@ let platforms5 = [
 
 let level5 = {
     platforms: platforms5,
-    color1: "#363b74",
-    color2: "#673888",
-    color3: "ef4f91",
-    color4: "#c79dd8",
-    color5: "#4d1b7b"
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
 }
 
 let platforms6 = [
@@ -401,11 +410,11 @@ let platforms6 = [
 
 let level6 = {
     platforms: platforms6,
-    color1: "#363b74",
-    color2: "#673888",
-    color3: "ef4f91",
-    color4: "#c79dd8",
-    color5: "#4d1b7b"
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
 }
 
 let platforms7 = [
@@ -455,11 +464,11 @@ let platforms7 = [
 
 let level7 = {
     platforms: platforms7,
-    color1: "#363b74",
-    color2: "#673888",
-    color3: "ef4f91",
-    color4: "#c79dd8",
-    color5: "#4d1b7b"
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
 }
 
 let platforms8 = [
@@ -516,11 +525,6 @@ let platforms8 = [
 
 let level8 = {
     platforms: platforms8,
-    // color1: "#363b74",
-    // color2: "#4d1b7b",
-    // color3: "#673888",
-    // color4: "#ef4f91",
-    // color5: "#c79dd8"
     color1: "#543864",
     color2: "#160f30",
     color3: "#8b4367",
