@@ -21,9 +21,10 @@ Musical instruments, should be impossible to fall.
 
 etc.
 
-# Initial Walkthrough
 
-Left zone to start walkthrough.
+# ~~Initial Walkthrough~~ 
+
+~~Left zone to start walkthrough.~~
 
 # Win / defeat
 

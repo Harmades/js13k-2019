@@ -201,28 +201,40 @@ function updateGamepadInput(input) {
 function walkthrough(game) {
     let current = null;
     let currentPlatform = null;
+    let nextPlatform = null;
     let acc = 0;
-    for (i = 0; i < game.platforms.length; i++) {
-        let platform = game.platforms[i];
+    for (i = 0; i < game.sequence.length; i++) {
+        let platform = game.sequence[i];
         acc += platform.time;
         if (game.walkthroughTime / 500 >= acc) {
             if (currentPlatform != null) {
-                currentPlatform.triggering = false;
-                currentPlatform.firstTrigger = false;
+                nextPlatform = platform;
             }
             if (platform.triggering) {
-                platform.firstTrigger = false;
-            } else {
-                platform.triggering = true;
-                platform.firstTrigger = true;
+                currentPlatform = platform;
+                nextPlatform = null;
+                current = i;
             }
-            currentPlatform = platform;
-            current = i;
         }
     }
-    if ((current == game.platforms.length - 1) && game.walkthroughTime / 500 >= acc + 2) {
-        currentPlatform.triggering = false;
+    if (currentPlatform == null && nextPlatform == null) {
+        if (game.sequence[0].triggering) {
+            game.sequence[0].firstTrigger = false;
+        } else {
+            game.sequence[0].triggering = true;
+            game.sequence[0].firstTrigger = true;
+        }
+    }
+    if (currentPlatform != null && nextPlatform == null) {
         currentPlatform.firstTrigger = false;
+    }
+    if (currentPlatform != null && nextPlatform != null) {
+        currentPlatform.triggering = false;
+        nextPlatform.triggering = true;
+        nextPlatform.firstTrigger = true;
+    }
+    if ((current == game.sequence.length - 1) && game.walkthroughTime / 500 >= acc + 2) {
+        currentPlatform.triggering = false;
         game.state = GameState.Playing;
     }
 }
@@ -303,6 +315,7 @@ let game = {
     player: player,
     level: level8,
     platforms: level8.platforms,
+    sequence: level8.sequence,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
