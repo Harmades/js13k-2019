@@ -313,9 +313,9 @@ let GameState = {
 
 let game = {
     player: player,
-    level: level8,
-    platforms: level8.platforms,
-    sequence: level8.sequence,
+    level: level7,
+    platforms: level7.platforms,
+    sequence: level7.sequence,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
