@@ -26,12 +26,12 @@ etc.
 
 ~~Left zone to start walkthrough.~~
 
-# Win / defeat
+# ~~Win / defeat~~
 
-Fall -> defeat
-Wrong note -> defeat
-Write sequence of notes -> win
-No timeout
+~~Fall -> defeat~~
+~~Wrong note -> defeat~~
+~~Write sequence of notes -> win~~
+~~No timeout~~
 
 # Stats
 

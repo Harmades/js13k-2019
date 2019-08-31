@@ -23,7 +23,7 @@ let PlayerState = {
 
 let player = {
     x: 100,
-    y: 1080,
+    y: window.innerHeight - 1,
     dx: 0,
     dy: 0,
     width: 75,
@@ -308,7 +308,8 @@ function onKey(code, value) {
 
 let GameState = {
     Walkthrough: "Walkthrough",
-    Playing: "Playing"
+    Playing: "Playing",
+    Idle: "Idle"
 }
 
 let game = {
@@ -316,6 +317,7 @@ let game = {
     level: level7,
     platforms: level7.platforms,
     sequence: level7.sequence,
+    next: 0,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
@@ -393,6 +395,11 @@ function update(game) {
 
     let { bestCollisionMatch, bestPlatformMatch } = collide(player, platforms);
 
+    if (player.x + player.width <= 0 || player.x >= game.width
+        || player.y + player.height <= 0 || player.y >= game.height) {
+        lose(game);
+    }
+
     if (bestPlatformMatch != null) {
         if (Math.abs(bestCollisionMatch.width) < Math.abs(bestCollisionMatch.height)) {
             player.dx = 0;
@@ -406,12 +413,30 @@ function update(game) {
             if (bestCollisionMatch.height > 0) player.state = PlayerState.Ground;
             if (bestCollisionMatch.height < 0) player.state = PlayerState.Air;
         }
-        if (!bestPlatformMatch.triggering) bestPlatformMatch.firstTrigger = true;
+        if (!bestPlatformMatch.triggering) {
+            bestPlatformMatch.firstTrigger = true;
+            if (bestPlatformMatch != game.sequence[game.next]) lose(game);
+            else game.next++; 
+        }
         if (bestPlatformMatch.triggering && bestPlatformMatch.firstTrigger) bestPlatformMatch.firstTrigger = false;
         bestPlatformMatch.triggering = true;
     } else {
         player.state = PlayerState.Air;
     }
+}
+
+function play() {
+    game.state = GameState.Playing;
+    homeMenu.style.display = "none";
+}
+
+function lose(game) {
+    game.player.x = 100;
+    game.player.y = game.height - 1;
+    game.player.dx = 0;
+    game.player.dy = 0;
+    game.player.state = PlayerState.Air;
+    game.next = 0;
 }
 
 let staticBackgroundCanvas = document.getElementById("static-background");
@@ -445,6 +470,7 @@ renderStaticBackground(staticBackgroundContext, game.level);
 renderBackground(backgroundContext, game.level);
 for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
 // renderTree(backgroundContext, 0, 0);
+let homeMenu = document.getElementById("home");
 
 function step(timestamp) {
     game.delta = timestamp - game.lastStep;
@@ -454,13 +480,18 @@ function step(timestamp) {
         update(game);
         updateGamepadInput(input);
         renderPlayer(playerContext, game.player, game.level);
+        renderFx(fxContext, game);
+        renderAudio(audioContext, game.platforms);
     }
     if (game.state == GameState.Walkthrough) {
         game.walkthroughTime += game.delta;
         walkthrough(game);
+        renderFx(fxContext, game);
+        renderAudio(audioContext, game.platforms);
     }
-    renderFx(fxContext, game);
-    renderAudio(audioContext, game.platforms);
+    if (game.state == GameState.Idle) {
+        
+    }
     game.lastStep = timestamp;
     window.requestAnimationFrame(step);
 }
