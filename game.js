@@ -309,14 +309,16 @@ function onKey(code, value) {
 let GameState = {
     Walkthrough: "Walkthrough",
     Playing: "Playing",
+    NextLevel: "NextLevel",
+    Dead: "Dead",
     Idle: "Idle"
 }
 
 let game = {
     player: player,
-    level: level7,
-    platforms: level7.platforms,
-    sequence: level7.sequence,
+    level: level2,
+    platforms: level2.platforms,
+    sequence: level2.sequence,
     next: 0,
     input: input,
     width: window.innerWidth,
@@ -416,7 +418,14 @@ function update(game) {
         if (!bestPlatformMatch.triggering) {
             bestPlatformMatch.firstTrigger = true;
             if (bestPlatformMatch != game.sequence[game.next]) lose(game);
-            else game.next++; 
+            else {
+                if (game.next == game.sequence.length - 1) {
+                    game.state = GameState.NextLevel;
+                    game.walkthroughTime = 0;
+                } else {
+                    game.next++;
+                }
+            }
         }
         if (bestPlatformMatch.triggering && bestPlatformMatch.firstTrigger) bestPlatformMatch.firstTrigger = false;
         bestPlatformMatch.triggering = true;
@@ -437,6 +446,19 @@ function lose(game) {
     game.player.dy = 0;
     game.player.state = PlayerState.Air;
     game.next = 0;
+}
+
+function nextLevel(game) {
+    game.player.x = 100;
+    game.player.y = game.height - 1;
+    game.player.dx = 0;
+    game.player.dy = 0;
+    game.level = level5;
+    game.platforms = level5.platforms;
+    game.sequence = level5.sequence;
+    game.next = 0;
+    levelContext.clearRect(0, 0, game.width, game.height);
+    for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
 }
 
 let staticBackgroundCanvas = document.getElementById("static-background");
@@ -491,6 +513,13 @@ function step(timestamp) {
     }
     if (game.state == GameState.Idle) {
         
+    }
+    if (game.state == GameState.NextLevel) {
+        game.walkthroughTime += game.delta;
+        update(game);
+        renderPlayer(playerContext, game.player, game.level);
+        renderFx(fxContext, game);
+        renderAudio(audioContext, game.platforms);
     }
     game.lastStep = timestamp;
     window.requestAnimationFrame(step);
