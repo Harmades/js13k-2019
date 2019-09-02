@@ -199,14 +199,19 @@ function updateGamepadInput(input) {
 }
 
 function walkthrough(game) {
+    if (game.player.y <= game.height) {
+        game.player.y = game.height + 8;
+        update(game);
+    }
     let current = null;
     let currentPlatform = null;
     let nextPlatform = null;
     let acc = 0;
+    // if (game.stateTime < 1000) return;
     for (i = 0; i < game.sequence.length; i++) {
         let platform = game.sequence[i];
         acc += platform.time;
-        if (game.walkthroughTime / 500 >= acc) {
+        if (game.stateTime / 500 >= acc) {
             if (currentPlatform != null) {
                 nextPlatform = platform;
             }
@@ -233,9 +238,11 @@ function walkthrough(game) {
         nextPlatform.triggering = true;
         nextPlatform.firstTrigger = true;
     }
-    if ((current == game.sequence.length - 1) && game.walkthroughTime / 500 >= acc + 2) {
+    if ((current == game.sequence.length - 1) && game.stateTime / 500 >= acc + 2) {
         currentPlatform.triggering = false;
+        game.next = 0;
         game.state = GameState.Playing;
+        game.player.x = 100;
     }
 }
 
@@ -301,7 +308,7 @@ function onKey(code, value) {
         case "KeyZ":
             if (!value) {
                 game.state = GameState.Walkthrough;
-                game.walkthroughTime = 0;
+                game.stateTime = 0;
             }
     }
 }
@@ -326,7 +333,7 @@ let game = {
     lastStep: 0,
     delta: 0,
     state: GameState.Playing,
-    walkthroughTime: 0
+    stateTime: 0
 };
 
 function getCollision(player, platform) {
@@ -397,8 +404,8 @@ function update(game) {
 
     let { bestCollisionMatch, bestPlatformMatch } = collide(player, platforms);
 
-    if (player.x + player.width <= 0 || player.x >= game.width
-        || player.y + player.height <= 0 || player.y >= game.height) {
+    if (player.x + player.width + 10 <= 0 || player.x - 10 >= game.width
+        || player.y + player.height + 10 <= 0 || player.y - 10 >= game.height) {
         lose(game);
     }
 
@@ -421,7 +428,7 @@ function update(game) {
             else {
                 if (game.next == game.sequence.length - 1) {
                     game.state = GameState.NextLevel;
-                    game.walkthroughTime = 0;
+                    game.stateTime = 0;
                 } else {
                     game.next++;
                 }
@@ -434,6 +441,42 @@ function update(game) {
     }
 }
 
+function nextLevelUpdate(game) {
+    if (game.stateTime == 0) {
+        update(game);
+        levelContext.save();
+        backgroundContext.save();
+        playerContext.save();
+        fxContext.save();
+    }
+    if (game.stateTime >= 1000 && game.stateTime <= 2000) {
+        levelContext.translate(0, game.delta * game.height / 1000);
+        playerContext.translate(-game.delta * game.width / 1000, 0);
+        fxContext.translate(0, game.delta * game.height / 1000);
+        backgroundContext.translate(0, -game.delta * game.height / 1000);
+    }
+    if (game.stateTime > 2000 && game.stateTime <= 2500) {
+        if (game.next != 0) {
+            nextLevel(game);
+        }
+    }
+    if (game.stateTime > 2500 && game.stateTime <= 3500) {
+        levelContext.translate(0, -game.delta * game.height / 1000);
+        playerContext.translate(game.delta * game.width / 1000, 0);
+        fxContext.translate(0, -game.delta * game.height / 1000);
+        backgroundContext.translate(0, game.delta * game.height / 1000);
+    }
+    if (game.stateTime > 3500) {
+        levelContext.restore();
+        playerContext.restore();
+        backgroundContext.restore();
+        fxContext.restore();
+    }
+    if (game.stateTime >= 4000) {
+        game.state = GameState.Playing;
+    }
+}
+
 function play() {
     game.state = GameState.Playing;
     homeMenu.style.display = "none";
@@ -441,7 +484,7 @@ function play() {
 
 function lose(game) {
     game.player.x = 100;
-    game.player.y = game.height - 1;
+    game.player.y = game.height + 8;
     game.player.dx = 0;
     game.player.dy = 0;
     game.player.state = PlayerState.Air;
@@ -450,15 +493,13 @@ function lose(game) {
 
 function nextLevel(game) {
     game.player.x = 100;
-    game.player.y = game.height - 1;
+    game.player.y = game.height + 8;
     game.player.dx = 0;
     game.player.dy = 0;
-    game.level = level5;
-    game.platforms = level5.platforms;
-    game.sequence = level5.sequence;
+    game.level = level2;
+    game.platforms = level2.platforms;
+    game.sequence = level2.sequence;
     game.next = 0;
-    levelContext.clearRect(0, 0, game.width, game.height);
-    for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
 }
 
 let staticBackgroundCanvas = document.getElementById("static-background");
@@ -506,8 +547,10 @@ function step(timestamp) {
         renderAudio(audioContext, game.platforms);
     }
     if (game.state == GameState.Walkthrough) {
-        game.walkthroughTime += game.delta;
+        playerContext.clearRect(0, 0, game.width, game.height);
+        game.stateTime += game.delta;
         walkthrough(game);
+        renderPlayer(playerContext, game.player, game.level);
         renderFx(fxContext, game);
         renderAudio(audioContext, game.platforms);
     }
@@ -515,8 +558,13 @@ function step(timestamp) {
         
     }
     if (game.state == GameState.NextLevel) {
-        game.walkthroughTime += game.delta;
-        update(game);
+        playerContext.clearRect(0, 0, game.width, game.height);
+        backgroundContext.clearRect(0, 0, game.width, game.height);
+        levelContext.clearRect(0, 0, game.width, game.height);
+        nextLevelUpdate(game);
+        game.stateTime += game.delta;
+        renderBackground(backgroundContext, game.level);
+        for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
         renderPlayer(playerContext, game.player, game.level);
         renderFx(fxContext, game);
         renderAudio(audioContext, game.platforms);
