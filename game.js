@@ -207,7 +207,6 @@ function walkthrough(game) {
     let currentPlatform = null;
     let nextPlatform = null;
     let acc = 0;
-    // if (game.stateTime < 1000) return;
     for (i = 0; i < game.sequence.length; i++) {
         let platform = game.sequence[i];
         acc += platform.time;
@@ -243,6 +242,15 @@ function walkthrough(game) {
         game.next = 0;
         game.state = GameState.Playing;
         game.player.x = 100;
+    }
+}
+
+function dead(game) {
+    if (game.stateTime == 0) {
+        update(game);
+    }
+    if (game.stateTime > 1000) {
+        lose(game);
     }
 }
 
@@ -406,7 +414,8 @@ function update(game) {
 
     if (player.x + player.width + 10 <= 0 || player.x - 10 >= game.width
         || player.y + player.height + 10 <= 0 || player.y - 10 >= game.height) {
-        lose(game);
+        game.state = GameState.Dead;
+        game.stateTime = 0;
     }
 
     if (bestPlatformMatch != null) {
@@ -424,7 +433,10 @@ function update(game) {
         }
         if (!bestPlatformMatch.triggering) {
             bestPlatformMatch.firstTrigger = true;
-            if (bestPlatformMatch != game.sequence[game.next]) lose(game);
+            if (bestPlatformMatch != game.sequence[game.next]) {
+                game.state = GameState.Dead;
+                game.stateTime = 0;
+            }
             else {
                 if (game.next == game.sequence.length - 1) {
                     game.state = GameState.NextLevel;
@@ -441,6 +453,10 @@ function update(game) {
     }
 }
 
+function bounceAnimation(t) {
+    return 1 - Math.exp(-8 * t) * Math.cos(8 * t);
+}
+
 function nextLevelUpdate(game) {
     if (game.stateTime == 0) {
         update(game);
@@ -450,21 +466,28 @@ function nextLevelUpdate(game) {
         fxContext.save();
     }
     if (game.stateTime >= 1000 && game.stateTime <= 2000) {
-        levelContext.translate(0, game.delta * game.height / 1000);
-        playerContext.translate(-game.delta * game.width / 1000, 0);
-        fxContext.translate(0, game.delta * game.height / 1000);
-        backgroundContext.translate(0, -game.delta * game.height / 1000);
+        let currentAnimation = bounceAnimation(2 - game.stateTime / 1000);
+        let widthAnimation = game.width * (1 - currentAnimation);
+        let heightAnimation = game.height * (1 - currentAnimation);
+        playerContext.setTransform(1, 0, 0, 1, widthAnimation, 0);
+        fxContext.setTransform(1, 0, 0, 1, 0, heightAnimation);
+        backgroundContext.setTransform(1, 0, 0, 1, 0, -heightAnimation);
+        levelContext.setTransform(1, 0, 0, 1, 0, heightAnimation);
     }
     if (game.stateTime > 2000 && game.stateTime <= 2500) {
         if (game.next != 0) {
             nextLevel(game);
+            game.animFunc = bounceAnimation(game.height, 0);
         }
     }
     if (game.stateTime > 2500 && game.stateTime <= 3500) {
-        levelContext.translate(0, -game.delta * game.height / 1000);
-        playerContext.translate(game.delta * game.width / 1000, 0);
-        fxContext.translate(0, -game.delta * game.height / 1000);
-        backgroundContext.translate(0, game.delta * game.height / 1000);
+        let currentAnimation = bounceAnimation(game.stateTime / 1000 - 2.5);
+        let widthAnimation = game.width * (1 - currentAnimation);
+        let heightAnimation = game.height * (1 - currentAnimation);
+        playerContext.setTransform(1, 0, 0, 1, widthAnimation, 0);
+        fxContext.setTransform(1, 0, 0, 1, 0, heightAnimation);
+        backgroundContext.setTransform(1, 0, 0, 1, 0, -heightAnimation);
+        levelContext.setTransform(1, 0, 0, 1, 0, heightAnimation);
     }
     if (game.stateTime > 3500) {
         levelContext.restore();
@@ -489,6 +512,7 @@ function lose(game) {
     game.player.dy = 0;
     game.player.state = PlayerState.Air;
     game.next = 0;
+    game.state = GameState.Playing;
 }
 
 function nextLevel(game) {
@@ -551,6 +575,12 @@ function step(timestamp) {
         game.stateTime += game.delta;
         walkthrough(game);
         renderPlayer(playerContext, game.player, game.level);
+        renderFx(fxContext, game);
+        renderAudio(audioContext, game.platforms);
+    }
+    if (game.state == GameState.Dead) {
+        dead(game);
+        game.stateTime += game.delta;
         renderFx(fxContext, game);
         renderAudio(audioContext, game.platforms);
     }

@@ -37,10 +37,10 @@ etc.
 
 Number of falls, number of wrong notes, least level tries.
 
-# End of level
+# ~~End of level~~
 
-Modal shows that you rock, share button if I have time to implement it.
-Button to go to level selection screen.
+~~Modal shows that you rock, share button if I have time to implement it.~~
+~~Button to go to level selection screen.~~
 
 # Controllers
 
