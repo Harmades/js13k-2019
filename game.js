@@ -18,7 +18,8 @@ function renderRoundedRectangle(context, x, y, width, height) {
 let PlayerState = {
     Air: "air",
     Ground: "ground",
-    Wall : "wall"
+    Wall : "wall",
+    Dead: "dead"
 };
 
 let player = {
@@ -39,11 +40,19 @@ function renderPlayer(context, player, level) {
     context.fillStyle = level.color3;
     context.fill();
     context.beginPath()
-    context.fillStyle = level.color5;
-    context.shadowColor = level.color5;
     let x2 = player.dx > 0 ? player.x + 4 / 5 * player.width : player.x + 1 / 5 * player.width;
-    context.ellipse(player.x + player.width / 2, context.canvas.height - 2 / 5 * player.height - player.y, 5, 15, 0, 0, 2 * Math.PI);
-    context.ellipse(x2, y + 3 / 5 * player.height, 5, 15, 0, 0, 2 * Math.PI);
+    if (player.state == PlayerState.Dead) {
+        context.fillStyle = "crimson";
+        context.shadowColor = "crimson";
+        renderRoundedRectangle(context, player.x + 0.5 * player.width - 7.5, y + 12.5, 15, 50);
+        context.fill();
+        renderRoundedRectangle(context, player.x + 12.5, y + 0.5 * player.height - 7.5, 50, 15);
+    } else {
+        context.fillStyle = level.color5;
+        context.shadowColor = level.color5;
+        context.ellipse(player.x + player.width / 2, context.canvas.height - 2 / 5 * player.height - player.y, 5, 15, 0, 0, 2 * Math.PI);
+        context.ellipse(x2, y + 3 / 5 * player.height, 5, 15, 0, 0, 2 * Math.PI);
+    }
     context.fill();
     context.shadowColor = "black";
     context.shadowBlur = 10;
@@ -331,9 +340,10 @@ let GameState = {
 
 let game = {
     player: player,
-    level: level2,
-    platforms: level2.platforms,
-    sequence: level2.sequence,
+    currentLevel: 0,
+    level: levels[0],
+    platforms: levels[0].platforms,
+    sequence: levels[0].sequence,
     next: 0,
     input: input,
     width: window.innerWidth,
@@ -415,6 +425,7 @@ function update(game) {
     if (player.x + player.width + 10 <= 0 || player.x - 10 >= game.width
         || player.y + player.height + 10 <= 0 || player.y - 10 >= game.height) {
         game.state = GameState.Dead;
+        player.state = PlayerState.Dead;
         game.stateTime = 0;
     }
 
@@ -435,6 +446,7 @@ function update(game) {
             bestPlatformMatch.firstTrigger = true;
             if (bestPlatformMatch != game.sequence[game.next]) {
                 game.state = GameState.Dead;
+                player.state = PlayerState.Dead;
                 game.stateTime = 0;
             }
             else {
@@ -520,9 +532,11 @@ function nextLevel(game) {
     game.player.y = game.height + 8;
     game.player.dx = 0;
     game.player.dy = 0;
-    game.level = level2;
-    game.platforms = level2.platforms;
-    game.sequence = level2.sequence;
+    if (game.currentLevel == levels.length - 1) game.currentLevel = levels.length -1;
+    else game.currentLevel++;
+    game.level = levels[game.currentLevel];
+    game.platforms = game.level.platforms;
+    game.sequence = game.level.sequence;
     game.next = 0;
 }
 

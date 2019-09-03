@@ -593,7 +593,7 @@ let platforms8 = [
         width: 600,
         height: 75,
         note: 523.25,
-        time: 0
+        time: 1
     },
     {
         x: 650,
@@ -601,7 +601,7 @@ let platforms8 = [
         width: 75,
         height: 300,
         note: 1046.50,
-        time: 1
+        time: 0.5
     },
     {
         x: 250,
@@ -647,7 +647,26 @@ let platforms8 = [
 
 let level8 = {
     platforms: platforms8,
-    sequence: platforms8,
+    sequence: [
+        platforms8[0],
+        platforms8[1],
+        platforms8[2],
+        platforms8[3],
+        platforms8[4],
+        platforms8[5],
+        platforms8[6],
+        platforms8[5],
+        platforms8[4],
+        platforms8[0],
+        platforms8[1],
+        platforms8[2],
+        platforms8[3],
+        platforms8[4],
+        platforms8[5],
+        platforms8[6],
+        platforms8[5],
+        platforms8[4]
+    ],
     color1: "#543864",
     color2: "#160f30",
     color3: "#8b4367",
