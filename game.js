@@ -59,6 +59,7 @@ function renderPlayer(context, player, level) {
 }
 
 function playNote(context, value) {
+    if (!value) return;
     let oscillator = context.createOscillator();
     let gainNode = context.createGain();
     oscillator.connect(gainNode);
@@ -254,6 +255,11 @@ function walkthrough(game) {
     }
 }
 
+function credits() {
+    document.getElementById("credits").classList.add("changing");
+    document.getElementById("home").style.display = "none";
+}
+
 function dead(game) {
     if (game.stateTime == 0) {
         update(game);
@@ -278,54 +284,61 @@ function onKey(code, value) {
             input.down = value;
             break;
         case "KeyQ":
-            if (value) firstTrigger(audioContext, 523.25);
+            if (value) playNote(audioContext, 523.25);
             break;
         case "KeyW":
-            if (value) firstTrigger(audioContext, 554.37);
+            if (value) playNote(audioContext, 554.37);
             break;
         case "KeyE":
-            if (value) firstTrigger(audioContext, 587.33);
+            if (value) playNote(audioContext, 587.33);
             break;
         case "KeyR":
-            if (value) firstTrigger(audioContext, 622.25);
+            if (value) playNote(audioContext, 622.25);
             break;
         case "KeyT":
-            if (value) firstTrigger(audioContext, 659.25);
+            if (value) playNote(audioContext, 659.25);
             break;
         case "KeyY":
-            if (value) firstTrigger(audioContext, 698.46);
+            if (value) playNote(audioContext, 698.46);
             break;
         case "KeyU":
-            if (value) firstTrigger(audioContext, 739.99);
+            if (value) playNote(audioContext, 739.99);
             break;
         case "KeyI":
-            if (value) firstTrigger(audioContext, 783.99);
+            if (value) playNote(audioContext, 783.99);
             break;
         case "KeyO":
-            if (value) firstTrigger(audioContext, 830.61);
+            if (value) playNote(audioContext, 830.61);
             break;
         case "KeyP":
-            if (value) firstTrigger(audioContext, 880);
+            if (value) playNote(audioContext, 880);
             break;
         case "KeyP":
-            if (value) firstTrigger(audioContext, 932.33);
+            if (value) playNote(audioContext, 932.33);
             break;
         case "BracketLeft":
-            if (value) firstTrigger(audioContext, 987.77);
+            if (value) playNote(audioContext, 987.77);
             break;
         case "BracketRight":
-            if (value) firstTrigger(audioContext, 1046.50);
+            if (value) playNote(audioContext, 1046.50);
             break;
         case "KeyA":
-            if (value) firstTrigger(audioContext, 1108.73);
+            if (value) playNote(audioContext, 1108.73);
             break;
         case "KeyS":
-            if (value) firstTrigger(audioContext,  1174.66);
+            if (value) playNote(audioContext,  1174.66);
             break;
         case "KeyZ":
             if (!value) {
-                game.state = GameState.Walkthrough;
-                game.stateTime = 0;
+                if (game.state == GameState.Playing) {
+                    game.state = GameState.Walkthrough;
+                    game.stateTime = 0;
+                }
+            }
+            break;
+        case "Escape":
+            if (!value) {
+                escape();
             }
     }
 }
@@ -333,6 +346,7 @@ function onKey(code, value) {
 let GameState = {
     Walkthrough: "Walkthrough",
     Playing: "Playing",
+    FreePlaying: "FreePlaying",
     NextLevel: "NextLevel",
     Dead: "Dead",
     Idle: "Idle"
@@ -341,16 +355,16 @@ let GameState = {
 let game = {
     player: player,
     currentLevel: 0,
-    level: levels[0],
-    platforms: levels[0].platforms,
-    sequence: levels[0].sequence,
+    level: null,
+    platforms: null,
+    sequence: null,
     next: 0,
     input: input,
     width: window.innerWidth,
     height: window.innerHeight,
     lastStep: 0,
     delta: 0,
-    state: GameState.Playing,
+    state: GameState.Idle,
     stateTime: 0
 };
 
@@ -444,17 +458,19 @@ function update(game) {
         }
         if (!bestPlatformMatch.triggering) {
             bestPlatformMatch.firstTrigger = true;
-            if (bestPlatformMatch != game.sequence[game.next]) {
-                game.state = GameState.Dead;
-                player.state = PlayerState.Dead;
-                game.stateTime = 0;
-            }
-            else {
-                if (game.next == game.sequence.length - 1) {
-                    game.state = GameState.NextLevel;
+            if (game.state == GameState.Playing) {
+                if (bestPlatformMatch != game.sequence[game.next]) {
+                    game.state = GameState.Dead;
+                    player.state = PlayerState.Dead;
                     game.stateTime = 0;
-                } else {
-                    game.next++;
+                }
+                else {
+                    if (game.next == game.sequence.length - 1) {
+                        game.state = GameState.NextLevel;
+                        game.stateTime = 0;
+                    } else {
+                        game.next++;
+                    }
                 }
             }
         }
@@ -513,8 +529,49 @@ function nextLevelUpdate(game) {
 }
 
 function play() {
+    game.player.x = 100;
+    game.player.y = game.height + 8;
+    game.player.dx = 0;
+    game.player.dy = 0;
     game.state = GameState.Playing;
+    game.next = 0;
+    if (!game.level || game.level == freePlayLevel) {
+        game.currentLevel = 0;
+        game.level = levels[0];
+        game.platforms = levels[0].platforms;
+        game.sequence = levels[0].sequence;
+        for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
+    }
     homeMenu.style.display = "none";
+}
+
+function escape() {
+    if (game.state == GameState.FreePlaying) {
+        game.state = GameState.Idle;
+        document.getElementById("home").style.display = "block";
+        levelContext.clearRect(0, 0, game.width, game.height);
+        playerContext.clearRect(0, 0, game.width, game.height);
+    }
+    if (game.state == GameState.Playing) {
+        game.state = GameState.Idle;
+        document.getElementById("home").style.display = "block";
+    }
+}
+
+function freePlay() {
+    game.player.x = 100;
+    game.player.y = game.height + 8;
+    game.player.dx = 0;
+    game.player.dy = 0;
+    game.level = freePlayLevel;
+    game.sequence = freePlayLevel.sequence;
+    game.platforms = freePlayLevel.platforms;
+    game.state = GameState.FreePlaying;
+    if (game.level) {
+        levelContext.clearRect(0, 0, game.width, game.height);
+    }
+    for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
+    document.getElementById("home").style.display = "none";
 }
 
 function lose(game) {
@@ -524,7 +581,7 @@ function lose(game) {
     game.player.dy = 0;
     game.player.state = PlayerState.Air;
     game.next = 0;
-    game.state = GameState.Playing;
+    game.state = game.level == freePlayLevel ? GameState.FreePlaying : GameState.Playing;
 }
 
 function nextLevel(game) {
@@ -532,7 +589,9 @@ function nextLevel(game) {
     game.player.y = game.height + 8;
     game.player.dx = 0;
     game.player.dy = 0;
-    if (game.currentLevel == levels.length - 1) game.currentLevel = levels.length -1;
+    if (game.currentLevel == levels.length - 1) { 
+        credits();
+    }
     else game.currentLevel++;
     game.level = levels[game.currentLevel];
     game.platforms = game.level.platforms;
@@ -567,16 +626,15 @@ let playerContext = playerCanvas.getContext("2d");
 playerContext.shadowColor = "black";
 playerContext.shadowBlur = 10;
 let audioContext = new AudioContext();
-renderStaticBackground(staticBackgroundContext, game.level);
-renderBackground(backgroundContext, game.level);
-for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
+renderStaticBackground(staticBackgroundContext, levels[0]);
+renderBackground(backgroundContext, levels[0]);
 // renderTree(backgroundContext, 0, 0);
 let homeMenu = document.getElementById("home");
 
 function step(timestamp) {
     game.delta = timestamp - game.lastStep;
     fxContext.clearRect(0, 0, game.width, game.height);
-    if (game.state == GameState.Playing) {
+    if (game.state == GameState.Playing || game.state == GameState.FreePlaying) {
         playerContext.clearRect(0, 0, game.width, game.height);
         update(game);
         updateGamepadInput(input);

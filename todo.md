@@ -1,13 +1,13 @@
-# Title screen
+# ~~Title screen~~
 
-* Play
-* Free play
-* Options
-* Credits
+* ~~Play~~
+* ~~Free play~~
+* ~~Options~~
+* ~~Credits~~
 
-# Free play
+# ~~Free play~~
 
-Musical instruments, should be impossible to fall.
+~~Musical instruments, should be impossible to fall.~~
 
 # Level color sets
 
@@ -60,11 +60,8 @@ Playback to change
 
 In free play, play song X to trigger easter egg.
 
-# Credits
+# ~~Credits~~
 
-Adrian Lissot
-Adrian Lissot
-Adrian Lissot
-Adrian Lissot
+~~Adrian Lissot~~
 
-Special hate to undefined and null
+~~Special hate to undefined and null~~

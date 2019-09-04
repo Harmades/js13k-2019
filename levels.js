@@ -684,3 +684,84 @@ let levels = [
     level7,
     level8
 ];
+
+let freePlayPlatforms = [
+    {
+        x: 0,
+        y: 100,
+        width: 75,
+        height: 500
+    },
+    {
+        x: 75,
+        y: 100,
+        width: 221.25,
+        height: 75,
+        note: 523.25,
+    },    
+    {
+        x: 296.25,
+        y: 100,
+        width: 221.25,
+        height: 75,
+        note: 587.33
+    },
+    {
+        x: 517.5,
+        y: 100,
+        width: 221.25,
+        height: 75,
+        note: 659.25
+    },
+    {
+        x: 738.75,
+        y: 100,
+        width: 221.25,
+        height: 75,
+        note: 698.46
+    },
+    {
+        x: 960,
+        y: 100,
+        width: 221.25,
+        height: 75,
+        note: 783.99
+    },
+    {
+        x: 1181.25,
+        y: 100,
+        width: 221.25,
+        height: 75,
+        note: 880
+    },
+    {
+        x: 1402.5,
+        y: 100,
+        width: 221.25,
+        height: 75,
+        note: 987.77
+    },
+    {
+        x: 1623.75,
+        y: 100,
+        width: 221.25,
+        height: 75,
+        note: 1046.50
+    },
+    {
+        x: 1845,
+        y: 100,
+        width: 75,
+        height: 500
+    }
+];
+
+let freePlayLevel = {
+    platforms: freePlayPlatforms,
+    sequence: [],
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
+};
