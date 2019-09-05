@@ -257,6 +257,7 @@ function walkthrough(game) {
 
 function credits() {
     document.getElementById("credits").classList.add("changing");
+    document.getElementById("credits").style.display = "block";
     document.getElementById("home").style.display = "none";
 }
 
@@ -554,6 +555,10 @@ function escape() {
     }
     if (game.state == GameState.Playing) {
         game.state = GameState.Idle;
+        document.getElementById("home").style.display = "block";
+    }
+    if (game.state == GameState.Idle) {
+        document.getElementById("credits").style.display = "none";
         document.getElementById("home").style.display = "block";
     }
 }
