@@ -489,39 +489,39 @@ let platforms7 = [
     {
         x: 50,
         y: 600,
-        width: 100,
+        width: 150,
         height: 75,
         note: 880,
         time: 0
     },
     {
-        x: 150,
+        x: 200,
         y: 575,
-        width: 100,
+        width: 150,
         height: 75,
         note: 880,
         time: 1
     },
     {
-        x: 250,
+        x: 350,
         y: 550,
-        width: 100,
+        width: 150,
         height: 75,
         note: 880,
         time: 1
     },
     {
-        x: 1100,
+        x: 1000,
         y: 500,
-        width: 100,
+        width: 150,
         height: 75,
         note: 880,
         time: 2
     },
     {
-        x: 1200,
+        x: 1150,
         y: 550,
-        width: 100,
+        width: 150,
         height: 75,
         note: 880,
         time: 1
@@ -529,13 +529,13 @@ let platforms7 = [
     {
         x: 1300,
         y: 600,
-        width: 100,
+        width: 150,
         height: 75,
         note: 880,
         time: 1
     },
     {
-        x: 1400,
+        x: 1600,
         y: 650,
         width: 100,
         height: 75,

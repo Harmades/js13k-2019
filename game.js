@@ -29,7 +29,8 @@ let player = {
     dy: 0,
     width: 75,
     height: 75,
-    state: PlayerState.Air
+    state: PlayerState.Air,
+    canJump: true
 };
 
 function renderPlayer(context, player, level) {
@@ -416,21 +417,34 @@ function update(game) {
     let delta = game.delta;
     let input = game.input;
     let platforms = game.platforms;
+    let friction = player.state == PlayerState.Ground ? 0.6 : 0.8;
 
     if (input.xAxis != null) {
-        if (input.xAxis < 0) player.dx += input.xAxis / 100 * delta;
-        if (input.xAxis > 0) player.dx += input.xAxis / 100 * delta;
+        let axis = 0;
+        if (input.xAxis > 0.1) axis = input.xAxis;
+        if (input.xAxis < -0.1) axis = input.xAxis;
+        player.dx = player.dx * friction + axis * 0.015 * delta;
     } else {
-        if (input.left) player.dx += -0.005 * delta;
-        if (input.right) player.dx += 0.005 * delta;
+        let accel = 0;
+        if (input.left) accel = -1;
+        else if (input.right) accel = 1;
+        player.dx = player.dx * friction + accel * 0.015 * delta;
     }
-    if (!input.up && !input.down && !input.left && !input.right) player.dx *= 0.50;
-    if (player.state == PlayerState.Ground && input.up) player.dy = 2;
-    if (player.state == PlayerState.Wall && input.up) {
-        if (input.left) player.dx = 1;
-        if (input.right) player.dx = -1;
+    if (player.state == PlayerState.Ground && input.up && player.canJump) {
+        player.canJump = false;
         player.dy = 2;
     }
+    if (player.state == PlayerState.Ground && !input.up) player.canJump = true;
+    if (player.state == PlayerState.Air && !input.up) {
+        player.canJump = true;
+    }
+    if (player.state == PlayerState.Wall && input.up && player.canJump) {
+        if (input.left || input.xAxis < -0.1) player.dx = 2;
+        if (input.right || input.xAxis > 0.1) player.dx = -2;
+        player.dy = 2.5;
+        player.canJump = false;
+    }
+    if (player.state == PlayerState.Wall && !input.up) player.canJump = true;
     player.dy += -0.01 * delta;
     player.x += player.dx * delta;
     player.y += player.dy * delta;
@@ -525,7 +539,7 @@ function nextLevelUpdate(game) {
         fxContext.restore();
     }
     if (game.stateTime >= 4000) {
-        game.state = GameState.Playing;
+        if (game.state != GameState.Idle) game.state = GameState.Playing;
     }
 }
 
@@ -537,10 +551,10 @@ function play() {
     game.state = GameState.Playing;
     game.next = 0;
     if (!game.level || game.level == freePlayLevel) {
-        game.currentLevel = 0;
-        game.level = levels[0];
-        game.platforms = levels[0].platforms;
-        game.sequence = levels[0].sequence;
+        game.currentLevel = 7;
+        game.level = levels[7];
+        game.platforms = levels[7].platforms;
+        game.sequence = levels[7].sequence;
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
@@ -572,9 +586,7 @@ function freePlay() {
     game.sequence = freePlayLevel.sequence;
     game.platforms = freePlayLevel.platforms;
     game.state = GameState.FreePlaying;
-    if (game.level) {
-        levelContext.clearRect(0, 0, game.width, game.height);
-    }
+    game.next = 0;
     for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     document.getElementById("home").style.display = "none";
 }
@@ -596,6 +608,8 @@ function nextLevel(game) {
     game.player.dy = 0;
     if (game.currentLevel == levels.length - 1) { 
         credits();
+        game.currentLevel = 0;
+        game.state = GameState.Idle;
     }
     else game.currentLevel++;
     game.level = levels[game.currentLevel];
