@@ -61,17 +61,17 @@ function renderPlayer(context, player, level) {
 
 function playNote(context, value) {
     if (!value) return;
-    let oscillator = context.createOscillator();
     let gainNode = context.createGain();
-    oscillator.connect(gainNode);
-    gainNode.connect(context.destination);
+    let oscillator = audioContext.createOscillator();
     oscillator.type = 'sine';
     oscillator.frequency.value = value;
-    gainNode.gain.setValueAtTime(0, context.currentTime);
-    gainNode.gain.linearRampToValueAtTime(1, context.currentTime + 0.01);
+    oscillator.connect(gainNode);
     oscillator.start(context.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, context.currentTime + 1);
     oscillator.stop(context.currentTime + 1);
+    gainNode.connect(context.destination);
+    gainNode.gain.setValueAtTime(0, context.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.1, context.currentTime + 0.01);
+    gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 1);
 }
 
 function renderAudio(context, platforms) {
@@ -551,10 +551,10 @@ function play() {
     game.state = GameState.Playing;
     game.next = 0;
     if (!game.level || game.level == freePlayLevel) {
-        game.currentLevel = 7;
-        game.level = levels[7];
-        game.platforms = levels[7].platforms;
-        game.sequence = levels[7].sequence;
+        game.currentLevel = 0;
+        game.level = levels[0];
+        game.platforms = levels[0].platforms;
+        game.sequence = levels[0].sequence;
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
