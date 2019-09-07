@@ -183,24 +183,57 @@ function renderBackground(context, level) {
     renderStar(context, 600 / scale, 400 / scale, level);
     context.scale(1 / scale, 1 / scale);
 }
+let ControllerState = {
+    Keyboard: "Keyboard",
+    Gamepad: "Gamepad"
+};
 
 let input = {
     left: false,
-    up: false,
+    jump: false,
     right: false,
-    down: false,
-    xAxis: null
+    xAxis: null,
+    state: ControllerState.Keyboard
 };
+
 document.addEventListener("keydown", event => onKey(event.code, true), false);
 document.addEventListener("keyup", event => onKey(event.code, false), false);
+window.addEventListener("gamepadconnected", _ => {
+    input.state = ControllerState.Gamepad;
+    let element = document.getElementById("controller");
+    element.innerText = "Gamepad";
+    document.getElementById("controller").classList.add("visible");
+    setTimeout(_ => {
+        element.classList.remove("visible");
+        element.style.opacity = 1;
+        element.classList.add("hidden");
+        setTimeout(_ => {
+            element.classList.remove("hidden");
+            element.style.opacity = 0;
+        }, 2000);
+    }, 2000);
+});
+window.addEventListener("gamepaddisconnected", _ => {
+    input.state = ControllerState.Keyboard;
+    let element = document.getElementById("controller");
+    element.innerText = "Keyboard";
+    document.getElementById("controller").classList.add("visible");
+    setTimeout(_ => {
+        element.classList.remove("visible");
+        element.style.opacity = 1;
+        element.classList.add("hidden");
+        setTimeout(_ => {
+            element.classList.remove("hidden");
+            element.style.opacity = 0;
+        }, 2000);
+    }, 2000);
+});
 
 function updateGamepadInput(input) {
-    let gamepad = navigator.getGamepads()[0];
-    if (gamepad) {
-        if (gamepad.buttons[0].pressed) input.up = true;
-        if (!gamepad.buttons[0].pressed) input.up = false;
-        if (gamepad.buttons[13].pressed) input.down = true;
-        if (!gamepad.buttons[13].pressed) input.down = false;
+    if (input.state == ControllerState.Gamepad) {
+        let gamepad = navigator.getGamepads()[0];
+        if (gamepad.buttons[0].pressed) input.jump = true;
+        if (!gamepad.buttons[0].pressed) input.jump = false;
         if (gamepad.buttons[14].pressed) input.left = true;
         if (!gamepad.buttons[14].pressed) input.left = false;
         if (gamepad.buttons[15].pressed) input.right = true;
@@ -277,13 +310,10 @@ function onKey(code, value) {
             input.left = value;
             break;
         case "ArrowUp":
-            input.up = value;
+            input.jump = value;
             break;
         case "ArrowRight":
             input.right = value;
-            break;
-        case "ArrowDown":
-            input.down = value;
             break;
         case "KeyQ":
             if (value) playNote(audioContext, 523.25);
@@ -419,32 +449,32 @@ function update(game) {
     let platforms = game.platforms;
     let friction = player.state == PlayerState.Ground ? 0.6 : 0.8;
 
-    if (input.xAxis != null) {
-        let axis = 0;
+    let axis = 0;
+    if (input.state == ControllerState.Keyboard) {
+        if (input.left) axis = -1;
+        if (input.right) axis = 1;
+    }
+    if (input.state == ControllerState.Gamepad) {
         if (input.xAxis > 0.1) axis = input.xAxis;
         if (input.xAxis < -0.1) axis = input.xAxis;
-        player.dx = player.dx * friction + axis * 0.015 * delta;
-    } else {
-        let accel = 0;
-        if (input.left) accel = -1;
-        else if (input.right) accel = 1;
-        player.dx = player.dx * friction + accel * 0.015 * delta;
     }
-    if (player.state == PlayerState.Ground && input.up && player.canJump) {
+    player.dx = player.dx * friction + axis * 0.015 * delta;
+
+    if (player.state == PlayerState.Ground && input.jump && player.canJump) {
         player.canJump = false;
         player.dy = 2;
     }
-    if (player.state == PlayerState.Ground && !input.up) player.canJump = true;
-    if (player.state == PlayerState.Air && !input.up) {
+    if (player.state == PlayerState.Ground && !input.jump) player.canJump = true;
+    if (player.state == PlayerState.Air && !input.jump) {
         player.canJump = true;
     }
-    if (player.state == PlayerState.Wall && input.up && player.canJump) {
+    if (player.state == PlayerState.Wall && input.jump && player.canJump) {
         if (input.left || input.xAxis < -0.1) player.dx = 2;
         if (input.right || input.xAxis > 0.1) player.dx = -2;
         player.dy = 2.5;
         player.canJump = false;
     }
-    if (player.state == PlayerState.Wall && !input.up) player.canJump = true;
+    if (player.state == PlayerState.Wall && !input.jump) player.canJump = true;
     player.dy += -0.01 * delta;
     player.x += player.dx * delta;
     player.y += player.dy * delta;
