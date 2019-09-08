@@ -196,37 +196,31 @@ let input = {
     state: ControllerState.Keyboard
 };
 
+function notify(element, message) {
+    element.innerText = message;
+    element.classList.add("visible");
+    setTimeout(_ => {
+        element.classList.remove("visible");
+        element.style.opacity = 1;
+        element.classList.add("hidden");
+        setTimeout(_ => {
+            element.classList.remove("hidden");
+            element.style.opacity = 0;
+        }, 2000);
+    }, 2000);
+}
+
 document.addEventListener("keydown", event => onKey(event.code, true), false);
 document.addEventListener("keyup", event => onKey(event.code, false), false);
 window.addEventListener("gamepadconnected", _ => {
     input.state = ControllerState.Gamepad;
     let element = document.getElementById("controller");
-    element.innerText = "Gamepad";
-    document.getElementById("controller").classList.add("visible");
-    setTimeout(_ => {
-        element.classList.remove("visible");
-        element.style.opacity = 1;
-        element.classList.add("hidden");
-        setTimeout(_ => {
-            element.classList.remove("hidden");
-            element.style.opacity = 0;
-        }, 2000);
-    }, 2000);
+    notify(element, "Gamepad");
 });
 window.addEventListener("gamepaddisconnected", _ => {
     input.state = ControllerState.Keyboard;
     let element = document.getElementById("controller");
-    element.innerText = "Keyboard";
-    document.getElementById("controller").classList.add("visible");
-    setTimeout(_ => {
-        element.classList.remove("visible");
-        element.style.opacity = 1;
-        element.classList.add("hidden");
-        setTimeout(_ => {
-            element.classList.remove("hidden");
-            element.style.opacity = 0;
-        }, 2000);
-    }, 2000);
+    notify(element, "Keyboard");
 });
 
 function updateGamepadInput(input) {
@@ -588,6 +582,7 @@ function play() {
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
+    notify(document.getElementById("hint"), "Press W to see the walkthrough");
 }
 
 function escape() {
@@ -629,6 +624,7 @@ function lose(game) {
     game.player.state = PlayerState.Air;
     game.next = 0;
     game.state = game.level == freePlayLevel ? GameState.FreePlaying : GameState.Playing;
+    notify(document.getElementById("hint"), "Press W to see the walkthrough");
 }
 
 function nextLevel(game) {
