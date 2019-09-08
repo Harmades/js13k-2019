@@ -80,6 +80,10 @@ h2 { font-size: 44px; }
     border-color: ghostwhite;
 }
 
+.menu-option.current {
+    border-color: ghostwhite;
+}
+
 ul {
     list-style-type: none;
     padding: 0;

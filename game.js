@@ -189,8 +189,10 @@ let ControllerState = {
 };
 
 let input = {
+    up: false,
     left: false,
     jump: false,
+    down: false,
     right: false,
     xAxis: null,
     state: ControllerState.Keyboard
@@ -298,16 +300,35 @@ function dead(game) {
     }
 }
 
+function getCurrentMenuOptionIndex() {
+    let options = document.getElementsByClassName("menu-option");
+    let currentIndex = null;
+    for (i = 0; i < options.length; i++) {
+        let option = options[i];
+        if (option.classList.contains("current")) {
+            currentIndex = i;
+        }
+    }
+    return currentIndex;
+}
+
 function onKey(code, value) {
     switch (code) {
         case "ArrowLeft":
             input.left = value;
             break;
+        case "ArrowDown":
+            input.down = value;
+            break;
         case "ArrowUp":
-            input.jump = value;
+            if (game.state == GameState.Idle) input.up = value;
+            else input.jump = value;
             break;
         case "ArrowRight":
             input.right = value;
+            break;
+        case "Enter":
+            input.jump = true;
             break;
         case "KeyQ":
             if (value) playNote(audioContext, 523.25);
@@ -433,6 +454,36 @@ function collide(player, platforms) {
     return {
         bestCollisionMatch: collisionMatch,
         bestPlatformMatch: platformMatch
+    }
+}
+
+function updateIdle(game) {
+    let shift = null;
+    let options = document.getElementsByClassName("menu-option");
+    let currentIndex = getCurrentMenuOptionIndex();
+    if (input.down && currentIndex == options.length - 1) {
+        shift = 0;
+        input.down = false;
+    }
+    else if (input.down) {
+        shift = currentIndex + 1;
+        input.down = false;
+    }
+    if (input.up && currentIndex == 0) {
+        shift = options.length - 1;
+        input.up = false;
+    }
+    else if (input.up) {
+        shift = currentIndex - 1;
+        input.up = false;
+    }
+    if (shift != null) {
+        options[currentIndex].classList.remove("current");
+        options[shift].classList.add("current");
+    }
+    if (input.jump) {
+        options[currentIndex].onclick.apply(options[currentIndex]);
+        input.jump = false;
     }
 }
 
@@ -612,6 +663,7 @@ function freePlay() {
     game.platforms = freePlayLevel.platforms;
     game.state = GameState.FreePlaying;
     game.next = 0;
+    levelContext.clearRect(0, 0, game.width, game.height);
     for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     document.getElementById("home").style.display = "none";
 }
@@ -702,7 +754,7 @@ function step(timestamp) {
         renderAudio(audioContext, game.platforms);
     }
     if (game.state == GameState.Idle) {
-        
+        updateIdle(game);
     }
     if (game.state == GameState.NextLevel) {
         playerContext.clearRect(0, 0, game.width, game.height);
