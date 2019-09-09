@@ -195,6 +195,7 @@ let input = {
     down: false,
     right: false,
     xAxis: null,
+    yAxis: null,
     state: ControllerState.Keyboard
 };
 
@@ -235,6 +236,10 @@ function updateGamepadInput(input) {
         if (gamepad.buttons[15].pressed) input.right = true;
         if (!gamepad.buttons[15].pressed) input.right = false;
         input.xAxis = gamepad.axes[0];
+        let oldYAxis = input.yAxis;
+        input.yAxis = gamepad.axes[1];
+        if (oldYAxis < 0.1 && input.yAxis >= 0.1) input.down = true;
+        if (oldYAxis > -0.1 && input.yAxis <= -0.1) input.up = true;
     }
 }
 
@@ -754,6 +759,7 @@ function step(timestamp) {
         renderAudio(audioContext, game.platforms);
     }
     if (game.state == GameState.Idle) {
+        updateGamepadInput(input);
         updateIdle(game);
     }
     if (game.state == GameState.NextLevel) {
