@@ -677,19 +677,347 @@ let level8 = {
 // ati$pyeypq$
 let platforms9 = [
     {
-
+        x: 50,
+        y: 500,
+        width: 200,
+        height: 75,
+        note: 523.25,
+        time: 0
+    },
+    {
+        x: 350,
+        y: 500,
+        width: 200,
+        height: 75,
+        note: 659.25,
+        time: 1
+    },
+    {
+        x: 650,
+        y: 500,
+        width: 200,
+        height: 75,
+        note: 783.99,
+        time: 1
+    },
+    {
+        x: 950,
+        y: 600,
+        width: 200,
+        height: 75,
+        note: 987.77,
+        time: 1
+    },
+    {
+        x: 1200,
+        y: 300,
+        width: 200,
+        height: 75,
+        note: 880,
+        time: 1
+    },
+    {
+        x: 1500,
+        y: 200,
+        width: 200,
+        height: 75,
+        note: 698.46,
+        time: 1
+    },
+    {
+        x: 1800,
+        y: 275,
+        width: 75,
+        height: 300,
+        note: 587.33,
+        time: 1
+    },
+    {
+        x: 950,
+        y: 0,
+        width: 200,
+        height: 75,
+        note: 1046.50,
+        time: 1
+    },
+    {
+        x: 650,
+        y: 0,
+        width: 200,
+        height: 75,
+        note: 987.77,
+        time: 1
     }
 ];
 
-// q$qiyq$qiyq$q
-let plaforms10 = [
+let level9 = {
+    platforms: platforms9,
+    sequence: [
+        platforms9[0],
+        platforms9[1],
+        platforms9[2],
+        platforms9[3],
+        platforms9[4],
+        platforms9[5],
+        platforms9[6],
+        platforms9[5],
+        platforms9[4],
+        platforms9[7],
+        platforms9[8]
+    ],
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
+};
 
+// q$qiyq$qiyq$q
+let platforms10 = [
+    {
+        x: 50,
+        y: 600,
+        width: 200,
+        height: 75,
+        note: 1046.50,
+        time: 1
+    },
+    {
+        x: 600,
+        y: 600,
+        width: 100,
+        height: 75,
+        note: 987.77,
+        time: 1
+    },
+    {
+        x: 250,
+        y: 350,
+        width: 200,
+        height: 75,
+        note: 783.99,
+        time: 1.5
+    },
+    {
+        x: 400,
+        y: 150,
+        width: 200,
+        height: 75,
+        note: 698.46,
+        time: 1.5
+    },
+    {
+        x: 700,
+        y: 250,
+        width: 350,
+        height: 75,
+        note: 1046.50,
+        time: 1
+    },
+    {
+        x: 1200,
+        y: 325,
+        width: 75,
+        height: 400,
+        note: 987.77,
+        time: 1
+    }
 ];
+
+let level10 = {
+    platforms: platforms10,
+    sequence: [
+        platforms10[0],
+        platforms10[1],
+        platforms10[0],
+        platforms10[2],
+        platforms10[3],
+        platforms10[4],
+        platforms10[5],
+        platforms10[4],
+        platforms10[2],
+        platforms10[3],
+        platforms10[4],
+        platforms10[5],
+        platforms10[4],
+    ],
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
+};
 
 // ayoiyq^iyoitua
-let plaforms11 = [
-
+let platforms11 = [
+    {
+        x: 50,
+        y: 600,
+        width: 200,
+        height: 75,
+        note: 523.25,
+        time: 0
+    },
+    {
+        x: 625,
+        y: 500,
+        width: 75,
+        height: 400,
+        note: 698.46,
+        time: 1
+    },
+    {
+        x: 550,
+        y: 300,
+        width: 200,
+        height: 75,
+        note: 830.61,
+        time: 1.5
+    },
+    {
+        x: 850,
+        y: 400,
+        width: 200,
+        height: 75,
+        note: 783.99,
+        time: 0.75
+    },
+    {
+        x: 1250,
+        y: 500,
+        width: 200,
+        height: 75,
+        note: 1046.50,
+        time: 1.5
+    },
+    {
+        x: 1600,
+        y: 550,
+        width: 75,
+        height: 300,
+        note: 923.33,
+        time: 1
+    },
+    {
+        x: 1150,
+        y: 200,
+        width: 200,
+        height: 75,
+        note: 659.25,
+        time: 1
+    },
+    {
+        x: 850,
+        y: 100,
+        width: 200,
+        height: 75,
+        note: 739.99,
+        time: 1.5
+    },
+    {
+        x: 550,
+        y: 0,
+        width: 200,
+        height: 75,
+        note: 523.25,
+        time: 1
+    }
 ];
+
+let level11 = {
+    platforms: platforms11,
+    sequence: [
+        platforms11[0],
+        platforms11[1],
+        platforms11[2],
+        platforms11[3],
+        platforms11[1],
+        platforms11[4],
+        platforms11[5],
+        platforms11[3],
+        platforms11[1],
+        platforms11[2],
+        platforms11[3],
+        platforms11[6],
+        platforms11[7],
+        platforms11[8],
+    ],
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
+}
+
+//tuipiut
+let platforms12 = [
+    {
+        x: 50,
+        y: 200,
+        width: 200,
+        height: 75,
+        note: 659.25,
+        time: 1
+    },
+    {
+        x: 250,
+        y: 275,
+        width: 100,
+        height: 75,
+        note: 739.99,
+        time: 1
+    },
+    {
+        x: 350,
+        y: 350,
+        width: 100,
+        height: 75,
+        note: 783.99,
+        time: 1
+    },
+    {
+        x: 450,
+        y: 425,
+        width: 100,
+        height: 75,
+        note: 880,
+        time: 2
+    },
+    {
+        x: 550,
+        y: 350,
+        width: 200,
+        height: 75,
+        note: 783.99,
+        time: 1.5
+    },
+    {
+        x: 750,
+        y: 425,
+        width: 200,
+        height: 75,
+        note: 739.99,
+        time: 1
+    },
+];
+
+let level12 = {
+    platforms: platforms12,
+    sequence: [
+        platforms12[0],
+        platforms12[1],
+        platforms12[2],
+        platforms12[3],
+        platforms12[4],
+        platforms12[5],
+        platforms12[0],
+    ],
+    color1: "#543864",
+    color2: "#160f30",
+    color3: "#8b4367",
+    color4: "#ff6464",
+    color5: "ghostwhite"
+}
 
 let levels = [
     level1,
@@ -699,7 +1027,11 @@ let levels = [
     level5,
     level6,
     level7,
-    level8
+    level8,
+    level9,
+    level10,
+    level11,
+    level12
 ];
 
 let freePlayPlatforms = [

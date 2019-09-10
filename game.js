@@ -629,9 +629,9 @@ function play() {
     game.next = 0;
     if (!game.level || game.level == freePlayLevel) {
         game.currentLevel = 0;
-        game.level = levels[0];
-        game.platforms = levels[0].platforms;
-        game.sequence = levels[0].sequence;
+        game.level = levels[8];
+        game.platforms = levels[8].platforms;
+        game.sequence = levels[8].sequence;
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
