@@ -674,6 +674,23 @@ let level8 = {
     color5: "ghostwhite"
 }
 
+// ati$pyeypq$
+let platforms9 = [
+    {
+
+    }
+];
+
+// q$qiyq$qiyq$q
+let plaforms10 = [
+
+];
+
+// ayoiyq^iyoitua
+let plaforms11 = [
+
+];
+
 let levels = [
     level1,
     level2,

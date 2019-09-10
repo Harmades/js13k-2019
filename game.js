@@ -365,22 +365,19 @@ function onKey(code, value) {
         case "KeyP":
             if (value) playNote(audioContext, 880);
             break;
-        case "KeyP":
+        case "BracketLeft":
             if (value) playNote(audioContext, 932.33);
             break;
-        case "BracketLeft":
+        case "BracketRight":
             if (value) playNote(audioContext, 987.77);
             break;
-        case "BracketRight":
+        case "KeyA":
             if (value) playNote(audioContext, 1046.50);
             break;
-        case "KeyA":
+        case "KeyS":
             if (value) playNote(audioContext, 1108.73);
             break;
-        case "KeyS":
-            if (value) playNote(audioContext,  1174.66);
-            break;
-        case "KeyZ":
+        case "Space":
             if (!value) {
                 if (game.state == GameState.Playing) {
                     game.state = GameState.Walkthrough;
@@ -638,7 +635,7 @@ function play() {
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
-    notify(document.getElementById("hint"), "Press W to see the walkthrough");
+    notify(document.getElementById("hint"), "Press Space to see the walkthrough");
 }
 
 function escape() {
@@ -681,7 +678,7 @@ function lose(game) {
     game.player.state = PlayerState.Air;
     game.next = 0;
     game.state = game.level == freePlayLevel ? GameState.FreePlaying : GameState.Playing;
-    notify(document.getElementById("hint"), "Press W to see the walkthrough");
+    notify(document.getElementById("hint"), "Press Space to see the walkthrough");
 }
 
 function nextLevel(game) {
