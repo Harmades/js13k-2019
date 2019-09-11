@@ -302,6 +302,8 @@ function credits() {
 function dead(game) {
     if (game.stateTime == 0) {
         update(game);
+        renderAudio(audioContext, game.platforms);
+        for (let platform of game.platforms) platform.firstTrigger = false;
     }
     if (game.stateTime > 1000) {
         lose(game);
@@ -759,7 +761,6 @@ function step(timestamp) {
         dead(game);
         game.stateTime += game.delta;
         renderFx(fxContext, game);
-        renderAudio(audioContext, game.platforms);
     }
     if (game.state == GameState.Idle) {
         updateGamepadInput(input);
