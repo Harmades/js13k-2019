@@ -119,7 +119,7 @@ function renderPlatform(context, platform, level) {
         offsetY(context.canvas.height, platform),
         platform.width,
         platform.height);
-    context.fillStyle = level.color2;
+    context.fillStyle = level.color1;
     context.fill();
 }
 
@@ -166,7 +166,7 @@ function renderTree(context, x, y) {
 function renderStaticBackground(context, level) {
     context.beginPath()
     context.rect(0, 0, context.canvas.width, context.canvas.height);
-    context.fillStyle = level.color1;
+    context.fillStyle = level.color2;
     context.fill();
 }
 
@@ -582,6 +582,7 @@ function nextLevelUpdate(game) {
         update(game);
         levelContext.save();
         backgroundContext.save();
+        staticBackgroundContext.save();
         playerContext.save();
         fxContext.save();
     }
@@ -597,6 +598,7 @@ function nextLevelUpdate(game) {
     if (game.stateTime > 2000 && game.stateTime <= 2500) {
         if (game.next != 0) {
             nextLevel(game);
+            staticBackgroundContext.setTransform(1, 0, 0, 1, -game.width, 0);
             game.animFunc = bounceAnimation(game.height, 0);
         }
     }
@@ -607,12 +609,14 @@ function nextLevelUpdate(game) {
         playerContext.setTransform(1, 0, 0, 1, widthAnimation, 0);
         fxContext.setTransform(1, 0, 0, 1, 0, heightAnimation);
         backgroundContext.setTransform(1, 0, 0, 1, 0, -heightAnimation);
+        staticBackgroundContext.setTransform(1, 0, 0, 1, -widthAnimation, 0);
         levelContext.setTransform(1, 0, 0, 1, 0, heightAnimation);
     }
     if (game.stateTime > 3500) {
         levelContext.restore();
         playerContext.restore();
         backgroundContext.restore();
+        staticBackgroundContext.restore();
         fxContext.restore();
     }
     if (game.stateTime >= 4000) {
@@ -629,9 +633,9 @@ function play() {
     game.next = 0;
     if (!game.level || game.level == freePlayLevel) {
         game.currentLevel = 0;
-        game.level = levels[8];
-        game.platforms = levels[8].platforms;
-        game.sequence = levels[8].sequence;
+        game.level = levels[0];
+        game.platforms = levels[0].platforms;
+        game.sequence = levels[0].sequence;
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
@@ -727,7 +731,6 @@ playerContext.shadowBlur = 10;
 let audioContext = new AudioContext();
 renderStaticBackground(staticBackgroundContext, levels[0]);
 renderBackground(backgroundContext, levels[0]);
-// renderTree(backgroundContext, 0, 0);
 let homeMenu = document.getElementById("home");
 
 function step(timestamp) {
@@ -765,6 +768,7 @@ function step(timestamp) {
         levelContext.clearRect(0, 0, game.width, game.height);
         nextLevelUpdate(game);
         game.stateTime += game.delta;
+        renderStaticBackground(staticBackgroundContext, game.level);
         renderBackground(backgroundContext, game.level);
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
         renderPlayer(playerContext, game.player, game.level);

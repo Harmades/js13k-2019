@@ -76,8 +76,8 @@ let platforms1 = [
 let level1 = {
     platforms: platforms1,
     sequence: platforms1,
-    color1: "#543864",
-    color2: "#160f30",
+    color1: "#202040",
+    color2: "#543864",
     color3: "#8b4367",
     color4: "#ff6464",
     color5: "ghostwhite"
@@ -145,10 +145,10 @@ let platforms2 = [
 let level2 = {
     platforms: platforms2,
     sequence: platforms2,
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#464159",
+    color2: "#6c7b95",
+    color3: "#8bbabb",
+    color4: "#c7f0db",
     color5: "ghostwhite"
 }
 
@@ -206,10 +206,10 @@ let platforms3 = [
 let level3 = {
     platforms: platforms3,
     sequence: platforms3,
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#43B047",
+    color2: "#049CD8",
+    color3: "#E52521",
+    color4: "#FBD000",
     color5: "ghostwhite"
 }
 
@@ -289,10 +289,10 @@ let level4 = {
         platforms4[3],
         platforms4[6],
     ],
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#bbbbbb",
+    color2: "#283148",
+    color3: "#913535",
+    color4: "#e9eec9",
     color5: "ghostwhite"
 }
 
@@ -361,10 +361,10 @@ let level5 = {
         platforms5[3],
         platforms5[4],
     ],
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#00204a",
+    color2: "#005792",
+    color3: "#448ef6",
+    color4: "#fdb44b",
     color5: "ghostwhite"
 }
 
@@ -478,10 +478,10 @@ let platforms6 = [
 let level6 = {
     platforms: platforms6,
     sequence: platforms6,
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#00334e",
+    color2: "#145374",
+    color3: "#5588a3",
+    color4: "#e8e8e8",
     color5: "ghostwhite"
 }
 
@@ -579,10 +579,10 @@ let platforms7 = [
 let level7 = {
     platforms: platforms7,
     sequence: platforms7,
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#165b33",
+    color2: "#146b3a",
+    color3: "#ea4630",
+    color4: "#f8b229",
     color5: "ghostwhite"
 }
 
@@ -667,10 +667,10 @@ let level8 = {
         platforms8[5],
         platforms8[4]
     ],
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#071e3d",
+    color2: "#1f4287",
+    color3: "#278ea5",
+    color4: "#21e6c1",
     color5: "ghostwhite"
 }
 
@@ -765,10 +765,10 @@ let level9 = {
         platforms9[7],
         platforms9[8]
     ],
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#fb0091",
+    color2: "#fb8691",
+    color3: "#fb9e91",
+    color4: "#fbda91",
     color5: "ghostwhite"
 };
 
@@ -841,10 +841,10 @@ let level10 = {
         platforms10[5],
         platforms10[4],
     ],
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#1b1919",
+    color2: "#616f39",
+    color3: "#a7d129",
+    color4: "#f8eeb4",
     color5: "ghostwhite"
 };
 
@@ -942,10 +942,10 @@ let level11 = {
         platforms11[7],
         platforms11[8],
     ],
-    color1: "#543864",
-    color2: "#160f30",
-    color3: "#8b4367",
-    color4: "#ff6464",
+    color1: "#000000",
+    color2: "#740001",
+    color3: "#ae0001",
+    color4: "#eeba30",
     color5: "ghostwhite"
 }
 
@@ -1012,8 +1012,8 @@ let level12 = {
         platforms12[5],
         platforms12[0],
     ],
-    color1: "#543864",
-    color2: "#160f30",
+    color1: "#202040",
+    color2: "#543864",
     color3: "#8b4367",
     color4: "#ff6464",
     color5: "ghostwhite"
