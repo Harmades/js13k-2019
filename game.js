@@ -243,10 +243,12 @@ function updateGamepadInput(input) {
     }
 }
 
-function walkthrough(game) {
+function playback(game) {
     if (game.player.y <= game.height) {
         game.player.y = game.height + 8;
-        update(game);
+        game.player.dy = 0;
+        game.player.dx = 0;
+        for (let platform of game.platforms) platform.triggering = false;
     }
     let current = null;
     let currentPlatform = null;
@@ -380,7 +382,7 @@ function onKey(code, value) {
         case "Space":
             if (!value) {
                 if (game.state == GameState.Playing) {
-                    game.state = GameState.Walkthrough;
+                    game.state = GameState.Playback;
                     game.stateTime = 0;
                 }
             }
@@ -393,7 +395,7 @@ function onKey(code, value) {
 }
 
 let GameState = {
-    Walkthrough: "Walkthrough",
+    Playback: "Playback",
     Playing: "Playing",
     FreePlaying: "FreePlaying",
     NextLevel: "NextLevel",
@@ -639,7 +641,7 @@ function play() {
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
-    notify(document.getElementById("hint"), "Press Space to see the walkthrough");
+    notify(document.getElementById("hint"), "Press Space to see the playback");
 }
 
 function escape() {
@@ -682,7 +684,7 @@ function lose(game) {
     game.player.state = PlayerState.Air;
     game.next = 0;
     game.state = game.level == freePlayLevel ? GameState.FreePlaying : GameState.Playing;
-    notify(document.getElementById("hint"), "Press Space to see the walkthrough");
+    notify(document.getElementById("hint"), "Press Space to see the playback");
 }
 
 function nextLevel(game) {
@@ -744,10 +746,10 @@ function step(timestamp) {
         renderFx(fxContext, game);
         renderAudio(audioContext, game.platforms);
     }
-    if (game.state == GameState.Walkthrough) {
+    if (game.state == GameState.Playback) {
         playerContext.clearRect(0, 0, game.width, game.height);
         game.stateTime += game.delta;
-        walkthrough(game);
+        playback(game);
         renderPlayer(playerContext, game.player, game.level);
         renderFx(fxContext, game);
         renderAudio(audioContext, game.platforms);
