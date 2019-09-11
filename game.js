@@ -255,8 +255,9 @@ function playback(game) {
     let nextPlatform = null;
     let acc = 0;
     for (i = 0; i < game.sequence.length; i++) {
-        let platform = game.sequence[i];
-        acc += platform.time;
+        let element = game.sequence[i];
+        let platform = element.platform;
+        acc += element.time;
         if (game.stateTime / 500 >= acc) {
             if (currentPlatform != null) {
                 nextPlatform = platform;
@@ -269,11 +270,11 @@ function playback(game) {
         }
     }
     if (currentPlatform == null && nextPlatform == null) {
-        if (game.sequence[0].triggering) {
-            game.sequence[0].firstTrigger = false;
+        if (game.sequence[0].platform.triggering) {
+            game.sequence[0].platform.firstTrigger = false;
         } else {
-            game.sequence[0].triggering = true;
-            game.sequence[0].firstTrigger = true;
+            game.sequence[0].platform.triggering = true;
+            game.sequence[0].platform.firstTrigger = true;
         }
     }
     if (currentPlatform != null && nextPlatform == null) {
@@ -553,7 +554,7 @@ function update(game) {
         if (!bestPlatformMatch.triggering) {
             bestPlatformMatch.firstTrigger = true;
             if (game.state == GameState.Playing) {
-                if (bestPlatformMatch != game.sequence[game.next]) {
+                if (bestPlatformMatch != game.sequence[game.next].platform) {
                     game.state = GameState.Dead;
                     player.state = PlayerState.Dead;
                     game.stateTime = 0;
@@ -635,9 +636,9 @@ function play() {
     game.next = 0;
     if (!game.level || game.level == freePlayLevel) {
         game.currentLevel = 0;
-        game.level = levels[0];
-        game.platforms = levels[0].platforms;
-        game.sequence = levels[0].sequence;
+        game.level = levels[11];
+        game.platforms = levels[11].platforms;
+        game.sequence = levels[11].sequence;
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";

@@ -5,7 +5,6 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 523.25,
-        time: 0
     },    
     {
         x: 250,
@@ -13,7 +12,6 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 587.33,
-        time: 1
     },
     {
         x: 450,
@@ -21,7 +19,6 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 659.25,
-        time: 1
     },
     {
         x: 650,
@@ -29,7 +26,6 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 698.46,
-        time: 1
     },
     {
         x: 850,
@@ -37,7 +33,6 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 783.99,
-        time: 1
     },
     {
         x: 1050,
@@ -45,7 +40,6 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 1250,
@@ -53,7 +47,6 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 987.77,
-        time: 1
     },
     {
         x: 1450,
@@ -61,7 +54,6 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 1046.50,
-        time: 1
     },
     {
         x: 1670,
@@ -69,13 +61,22 @@ let platforms1 = [
         width: 200,
         height: 75,
         note: 523.25,
-        time: 1
     }
 ];
 
 let level1 = {
     platforms: platforms1,
-    sequence: platforms1,
+    sequence: [
+        { platform: platforms1[0], time: 0 },
+        { platform: platforms1[1], time: 1 },
+        { platform: platforms1[2], time: 1 },
+        { platform: platforms1[3], time: 1 },
+        { platform: platforms1[4], time: 1 },
+        { platform: platforms1[5], time: 1 },
+        { platform: platforms1[6], time: 1 },
+        { platform: platforms1[7], time: 1 },
+        { platform: platforms1[8], time: 1 },
+    ],
     color1: "#202040",
     color2: "#543864",
     color3: "#8b4367",
@@ -90,7 +91,6 @@ let platforms2 = [
         width: 200,
         height: 75,
         note: 880,
-        time: 0
     },
     {
         x: 400,
@@ -98,7 +98,6 @@ let platforms2 = [
         width: 300,
         height: 75,
         note: 739.99,
-        time: 1
     },
     {
         x: 50,
@@ -106,7 +105,6 @@ let platforms2 = [
         width: 200,
         height: 75,
         note: 659.25,
-        time: 1
     },
     {
         x: 400,
@@ -114,7 +112,6 @@ let platforms2 = [
         width: 500,
         height: 75,
         note: 587.33,
-        time: 1
     },
     {
         x: 1023,
@@ -122,7 +119,6 @@ let platforms2 = [
         width: 200,
         height: 75,
         note: 659.25,
-        time: 1
     },
     {
         x: 1347,
@@ -130,7 +126,6 @@ let platforms2 = [
         width: 200,
         height: 75,
         note: 739.99,
-        time: 1
     },
     {
         x: 1670,
@@ -138,13 +133,20 @@ let platforms2 = [
         width: 200,
         height: 75,
         note: 880,
-        time: 1
     }
 ]
 
 let level2 = {
     platforms: platforms2,
-    sequence: platforms2,
+    sequence: [
+        { platform: platforms2[0], time: 0 },
+        { platform: platforms2[1], time: 1 },
+        { platform: platforms2[2], time: 1 },
+        { platform: platforms2[3], time: 1 },
+        { platform: platforms2[4], time: 1 },
+        { platform: platforms2[5], time: 1 },
+        { platform: platforms2[6], time: 1 },
+    ],
     color1: "#464159",
     color2: "#6c7b95",
     color3: "#8bbabb",
@@ -159,7 +161,6 @@ let platforms3 = [
         width: 300,
         height: 75,
         note: 830.61,
-        time: 0
     },
     {
         x: 450,
@@ -167,7 +168,6 @@ let platforms3 = [
         width: 75,
         height: 300,
         note: 830.61,
-        time: 0.5
     },
     {
         x: 200,
@@ -175,7 +175,6 @@ let platforms3 = [
         width: 75,
         height: 300,
         note: 830.61,
-        time: 0.75
     },
     {
         x: 800,
@@ -183,7 +182,6 @@ let platforms3 = [
         width: 200,
         height: 75,
         note: 659.25,
-        time: 1
     },
     {
         x: 1100,
@@ -191,7 +189,6 @@ let platforms3 = [
         width: 200,
         height: 75,
         note: 830.61,
-        time: 0.5
     },
     {
         x: 1400,
@@ -199,13 +196,19 @@ let platforms3 = [
         width: 200,
         height: 75,
         note: 987.77,
-        time: 1
     }
 ]
 
 let level3 = {
     platforms: platforms3,
-    sequence: platforms3,
+    sequence: [
+        { platform: platforms3[0], time: 0 },
+        { platform: platforms3[1], time: 0.5 },
+        { platform: platforms3[2], time: 0.75 },
+        { platform: platforms3[3], time: 1 },
+        { platform: platforms3[4], time: 0.5 },
+        { platform: platforms3[5], time: 1 },
+    ],
     color1: "#43B047",
     color2: "#049CD8",
     color3: "#E52521",
@@ -220,7 +223,6 @@ let platforms4 = [
         width: 200,
         height: 75,
         note: 880,
-        time: 0
     },
     {
         x: 300,
@@ -228,7 +230,6 @@ let platforms4 = [
         width: 200,
         height: 75,
         note: 587.33,
-        time: 2
     },
     {
         x: 550,
@@ -236,7 +237,6 @@ let platforms4 = [
         width: 200,
         height: 75,
         note: 698.46,
-        time: 2
     },
     {
         x: 800,
@@ -244,7 +244,6 @@ let platforms4 = [
         width: 200,
         height: 75,
         note: 783.99,
-        time: 0.5
     },
     {
         x: 1200,
@@ -252,7 +251,6 @@ let platforms4 = [
         width: 200,
         height: 75,
         note: 880,
-        time: 0.5
     },
     {
         x: 800,
@@ -260,7 +258,6 @@ let platforms4 = [
         width: 200,
         height: 75,
         note: 587.33,
-        time: 1.75
     },
     {
         x: 1200,
@@ -268,26 +265,25 @@ let platforms4 = [
         width: 300,
         height: 75,
         note: 659.25,
-        time: 0.5
     },
 ]
 
 let level4 = {
     platforms: platforms4,
     sequence: [
-        platforms4[0],
-        platforms4[1],
-        platforms4[2],
-        platforms4[3],
-        platforms4[4],
-        platforms4[5],
-        platforms4[2],
-        platforms4[3],
-        platforms4[4],
-        platforms4[5],
-        platforms4[2],
-        platforms4[3],
-        platforms4[6],
+        { platform: platforms4[0], time: 0 },
+        { platform: platforms4[1], time: 2 },
+        { platform: platforms4[2], time: 2 },
+        { platform: platforms4[3], time: 0.5 },
+        { platform: platforms4[4], time: 0.5 },
+        { platform: platforms4[5], time: 1.75 },
+        { platform: platforms4[2], time: 2 },
+        { platform: platforms4[3], time: 0.5 },
+        { platform: platforms4[4], time: 0.5 },
+        { platform: platforms4[5], time: 1.75 },
+        { platform: platforms4[2], time: 2 },
+        { platform: platforms4[3], time: 0.5 },
+        { platform: platforms4[6], time: 0.5 },
     ],
     color1: "#bbbbbb",
     color2: "#283148",
@@ -303,7 +299,6 @@ let platforms5 = [
         width: 200,
         height: 75,
         note: 523.25,
-        time: 0
     },
     {
         x: 450,
@@ -311,29 +306,20 @@ let platforms5 = [
         width: 200,
         height: 75,
         note: 587.33,
-        time: 1
     },
     {
         x: 850,
         y: 100,
         width: 200,
         height: 75,
-        triggering: false, 
-        triggered: false,
-        playNote: false,
         note: 659.25,
-        time: 1
     },
     {
         x: 1250,
         y: 100,
         width: 200,
         height: 75,
-        triggering: false, 
-        triggered: false,
-        playNote: false,
         note: 739.99,
-        time: 1
     },
     {
         x: 1670,
@@ -344,22 +330,21 @@ let platforms5 = [
         triggered: false,
         playNote: false,
         note: 880,
-        time: 1
     },
 ]
 
 let level5 = {
     platforms: platforms5,
     sequence: [
-        platforms5[0],
-        platforms5[1],
-        platforms5[2],
-        platforms5[1],
-        platforms5[2],
-        platforms5[3],
-        platforms5[2],
-        platforms5[3],
-        platforms5[4],
+        { platform: platforms5[0], time: 0 },
+        { platform: platforms5[1], time: 1 },
+        { platform: platforms5[2], time: 1 },
+        { platform: platforms5[1], time: 1 },
+        { platform: platforms5[2], time: 1 },
+        { platform: platforms5[3], time: 1 },
+        { platform: platforms5[2], time: 1 },
+        { platform: platforms5[3], time: 1 },
+        { platform: platforms5[4], time: 1 },
     ],
     color1: "#00204a",
     color2: "#005792",
@@ -375,7 +360,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 1046.50,
-        time: 0
     },
     {
         x: 150,
@@ -383,7 +367,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 987.77,
-        time: 1
     },
     {
         x: 250,
@@ -391,7 +374,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 350,
@@ -399,7 +381,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 450,
@@ -407,7 +388,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 987.77,
-        time: 1
     },
     {
         x: 550,
@@ -415,7 +395,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 1046.50,
-        time: 2
     },
     {
         x: 650,
@@ -423,7 +402,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 987.77,
-        time: 1
     },
     {
         x: 750,
@@ -431,7 +409,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 850,
@@ -439,7 +416,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 950,
@@ -447,7 +423,6 @@ let platforms6 = [
         width: 100,
         height: 75,
         note: 987.77,
-        time: 1
     },
     {
         x: 1100,
@@ -455,7 +430,6 @@ let platforms6 = [
         width: 500,
         height: 75,
         note: 783.99,
-        time: 2
     },
     {
         x: 1650,
@@ -463,7 +437,6 @@ let platforms6 = [
         width: 75,
         height: 300,
         note: 880,
-        time: 1
     },
     {
         x: 1250,
@@ -471,13 +444,26 @@ let platforms6 = [
         width: 200,
         height: 75,
         note: 587.33,
-        time: 0.75
     }
 ]
 
 let level6 = {
     platforms: platforms6,
-    sequence: platforms6,
+    sequence: [
+        { platform: platforms6[0], time: 0 },
+        { platform: platforms6[1], time: 1 },
+        { platform: platforms6[2], time: 1 },
+        { platform: platforms6[3], time: 1 },
+        { platform: platforms6[4], time: 1 },
+        { platform: platforms6[5], time: 2 },
+        { platform: platforms6[6], time: 1 },
+        { platform: platforms6[7], time: 1 },
+        { platform: platforms6[8], time: 1 },
+        { platform: platforms6[9], time: 1 },
+        { platform: platforms6[10], time: 2 },
+        { platform: platforms6[11], time: 1 },
+        { platform: platforms6[12], time: 0.75 },
+    ],
     color1: "#00334e",
     color2: "#145374",
     color3: "#5588a3",
@@ -500,7 +486,6 @@ let platforms7 = [
         width: 150,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 350,
@@ -508,7 +493,6 @@ let platforms7 = [
         width: 150,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 1000,
@@ -516,7 +500,6 @@ let platforms7 = [
         width: 150,
         height: 75,
         note: 880,
-        time: 2
     },
     {
         x: 1150,
@@ -524,7 +507,6 @@ let platforms7 = [
         width: 150,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 1300,
@@ -532,7 +514,6 @@ let platforms7 = [
         width: 150,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 1600,
@@ -540,7 +521,6 @@ let platforms7 = [
         width: 100,
         height: 75,
         note: 880,
-        time: 2
     },
     {
         x: 1400,
@@ -548,7 +528,6 @@ let platforms7 = [
         width: 100,
         height: 75,
         note: 1046.50,
-        time: 1
     },
     {
         x: 1300,
@@ -556,7 +535,6 @@ let platforms7 = [
         width: 100,
         height: 75,
         note: 698.46,
-        time: 1
     },
     {
         x: 1200,
@@ -564,7 +542,6 @@ let platforms7 = [
         width: 100,
         height: 75,
         note: 783.99,
-        time: 1.5
     },
     {
         x: 1100,
@@ -572,13 +549,24 @@ let platforms7 = [
         width: 100,
         height: 75,
         note: 880,
-        time: 0.5
     },
 ]
 
 let level7 = {
     platforms: platforms7,
-    sequence: platforms7,
+    sequence: [
+        { platform: platforms7[0], time : 0 },
+        { platform: platforms7[1], time : 1 },
+        { platform: platforms7[2], time : 1 },
+        { platform: platforms7[3], time : 2 },
+        { platform: platforms7[4], time : 1 },
+        { platform: platforms7[5], time : 1 },
+        { platform: platforms7[6], time : 2 },
+        { platform: platforms7[7], time : 1 },
+        { platform: platforms7[8], time : 1 },
+        { platform: platforms7[9], time : 1.5 },
+        { platform: platforms7[10], time : 0.5 },
+    ],
     color1: "#165b33",
     color2: "#146b3a",
     color3: "#ea4630",
@@ -593,7 +581,6 @@ let platforms8 = [
         width: 600,
         height: 75,
         note: 523.25,
-        time: 1
     },
     {
         x: 650,
@@ -601,7 +588,6 @@ let platforms8 = [
         width: 75,
         height: 300,
         note: 1046.50,
-        time: 0.5
     },
     {
         x: 250,
@@ -609,7 +595,6 @@ let platforms8 = [
         width: 200,
         height: 75,
         note: 783.99,
-        time: 1
     },
     {
         x: 850,
@@ -617,7 +602,6 @@ let platforms8 = [
         width: 150,
         height: 75,
         note: 698.46,
-        time: 1
     },
     {
         x: 1000,
@@ -625,7 +609,6 @@ let platforms8 = [
         width: 150,
         height: 75,
         note: 783.99,
-        time: 1
     },
     {
         x: 1150,
@@ -633,7 +616,6 @@ let platforms8 = [
         width: 150,
         height: 75,
         note: 698.46,
-        time: 1
     },
     {
         x: 1300,
@@ -641,31 +623,30 @@ let platforms8 = [
         width: 150,
         height: 75,
         note: 659.25,
-        time: 1
     },
 ]
 
 let level8 = {
     platforms: platforms8,
     sequence: [
-        platforms8[0],
-        platforms8[1],
-        platforms8[2],
-        platforms8[3],
-        platforms8[4],
-        platforms8[5],
-        platforms8[6],
-        platforms8[5],
-        platforms8[4],
-        platforms8[0],
-        platforms8[1],
-        platforms8[2],
-        platforms8[3],
-        platforms8[4],
-        platforms8[5],
-        platforms8[6],
-        platforms8[5],
-        platforms8[4]
+        { platform: platforms8[0], time: 0 },
+        { platform: platforms8[1], time: 0.75 },
+        { platform: platforms8[2], time: 0.75 },
+        { platform: platforms8[3], time: 1.25 },
+        { platform: platforms8[4], time: 0.75 },
+        { platform: platforms8[5], time: 0.75 },
+        { platform: platforms8[6], time: 0.75 },
+        { platform: platforms8[5], time: 0.75 },
+        { platform: platforms8[4], time: 0.75 },
+        { platform: platforms8[0], time: 0.75 },
+        { platform: platforms8[1], time: 1.25 },
+        { platform: platforms8[2], time: 0.75 },
+        { platform: platforms8[3], time: 1.25 },
+        { platform: platforms8[4], time: 0.75 },
+        { platform: platforms8[5], time: 0.75 },
+        { platform: platforms8[6], time: 0.75 },
+        { platform: platforms8[5], time: 0.75 },
+        { platform: platforms8[4], time: 0.75 }
     ],
     color1: "#071e3d",
     color2: "#1f4287",
@@ -682,7 +663,6 @@ let platforms9 = [
         width: 200,
         height: 75,
         note: 523.25,
-        time: 0
     },
     {
         x: 350,
@@ -690,7 +670,6 @@ let platforms9 = [
         width: 200,
         height: 75,
         note: 659.25,
-        time: 1
     },
     {
         x: 650,
@@ -698,7 +677,6 @@ let platforms9 = [
         width: 200,
         height: 75,
         note: 783.99,
-        time: 1
     },
     {
         x: 950,
@@ -706,7 +684,6 @@ let platforms9 = [
         width: 200,
         height: 75,
         note: 987.77,
-        time: 1
     },
     {
         x: 1200,
@@ -714,7 +691,6 @@ let platforms9 = [
         width: 200,
         height: 75,
         note: 880,
-        time: 1
     },
     {
         x: 1500,
@@ -722,7 +698,6 @@ let platforms9 = [
         width: 200,
         height: 75,
         note: 698.46,
-        time: 1
     },
     {
         x: 1800,
@@ -730,7 +705,6 @@ let platforms9 = [
         width: 75,
         height: 300,
         note: 587.33,
-        time: 1
     },
     {
         x: 950,
@@ -738,7 +712,6 @@ let platforms9 = [
         width: 200,
         height: 75,
         note: 1046.50,
-        time: 1
     },
     {
         x: 650,
@@ -746,24 +719,23 @@ let platforms9 = [
         width: 200,
         height: 75,
         note: 987.77,
-        time: 1
     }
 ];
 
 let level9 = {
     platforms: platforms9,
     sequence: [
-        platforms9[0],
-        platforms9[1],
-        platforms9[2],
-        platforms9[3],
-        platforms9[4],
-        platforms9[5],
-        platforms9[6],
-        platforms9[5],
-        platforms9[4],
-        platforms9[7],
-        platforms9[8]
+        { platform: platforms9[0], time: 0 },
+        { platform: platforms9[1], time: 1 },
+        { platform: platforms9[2], time: 1 },
+        { platform: platforms9[3], time: 1 },
+        { platform: platforms9[4], time: 1 },
+        { platform: platforms9[5], time: 1 },
+        { platform: platforms9[6], time: 1 },
+        { platform: platforms9[5], time: 1 },
+        { platform: platforms9[4], time: 1 },
+        { platform: platforms9[7], time: 1 },
+        { platform: platforms9[8], time: 1 }
     ],
     color1: "#fb0091",
     color2: "#fb8691",
@@ -780,7 +752,6 @@ let platforms10 = [
         width: 200,
         height: 75,
         note: 1046.50,
-        time: 1
     },
     {
         x: 600,
@@ -788,7 +759,6 @@ let platforms10 = [
         width: 100,
         height: 75,
         note: 987.77,
-        time: 1
     },
     {
         x: 250,
@@ -796,7 +766,6 @@ let platforms10 = [
         width: 200,
         height: 75,
         note: 783.99,
-        time: 1.5
     },
     {
         x: 400,
@@ -804,7 +773,6 @@ let platforms10 = [
         width: 200,
         height: 75,
         note: 698.46,
-        time: 1.5
     },
     {
         x: 700,
@@ -812,7 +780,6 @@ let platforms10 = [
         width: 350,
         height: 75,
         note: 1046.50,
-        time: 1
     },
     {
         x: 1200,
@@ -820,26 +787,25 @@ let platforms10 = [
         width: 75,
         height: 400,
         note: 987.77,
-        time: 1
     }
 ];
 
 let level10 = {
     platforms: platforms10,
     sequence: [
-        platforms10[0],
-        platforms10[1],
-        platforms10[0],
-        platforms10[2],
-        platforms10[3],
-        platforms10[4],
-        platforms10[5],
-        platforms10[4],
-        platforms10[2],
-        platforms10[3],
-        platforms10[4],
-        platforms10[5],
-        platforms10[4],
+        { platform: platforms10[0], time: 0 },
+        { platform: platforms10[1], time: 0.75 },
+        { platform: platforms10[0], time: 0.75 },
+        { platform: platforms10[2], time: 1.5 },
+        { platform: platforms10[3], time: 1.5 },
+        { platform: platforms10[4], time: 1.5 },
+        { platform: platforms10[5], time: 0.75 },
+        { platform: platforms10[4], time: 0.75 },
+        { platform: platforms10[2], time: 1.5 },
+        { platform: platforms10[3], time: 1.5 },
+        { platform: platforms10[4], time: 1.5 },
+        { platform: platforms10[5], time: 0.75 },
+        { platform: platforms10[4], time: 0.75 },
     ],
     color1: "#1b1919",
     color2: "#616f39",
@@ -856,7 +822,6 @@ let platforms11 = [
         width: 200,
         height: 75,
         note: 523.25,
-        time: 0
     },
     {
         x: 625,
@@ -864,7 +829,6 @@ let platforms11 = [
         width: 75,
         height: 400,
         note: 698.46,
-        time: 1
     },
     {
         x: 550,
@@ -872,7 +836,6 @@ let platforms11 = [
         width: 200,
         height: 75,
         note: 830.61,
-        time: 1.5
     },
     {
         x: 850,
@@ -880,7 +843,6 @@ let platforms11 = [
         width: 200,
         height: 75,
         note: 783.99,
-        time: 0.75
     },
     {
         x: 1250,
@@ -888,7 +850,6 @@ let platforms11 = [
         width: 200,
         height: 75,
         note: 1046.50,
-        time: 1.5
     },
     {
         x: 1600,
@@ -896,7 +857,6 @@ let platforms11 = [
         width: 75,
         height: 300,
         note: 923.33,
-        time: 1
     },
     {
         x: 1150,
@@ -904,7 +864,6 @@ let platforms11 = [
         width: 200,
         height: 75,
         note: 659.25,
-        time: 1
     },
     {
         x: 850,
@@ -912,7 +871,6 @@ let platforms11 = [
         width: 200,
         height: 75,
         note: 739.99,
-        time: 1.5
     },
     {
         x: 550,
@@ -920,27 +878,26 @@ let platforms11 = [
         width: 200,
         height: 75,
         note: 523.25,
-        time: 1
     }
 ];
 
 let level11 = {
     platforms: platforms11,
     sequence: [
-        platforms11[0],
-        platforms11[1],
-        platforms11[2],
-        platforms11[3],
-        platforms11[1],
-        platforms11[4],
-        platforms11[5],
-        platforms11[3],
-        platforms11[1],
-        platforms11[2],
-        platforms11[3],
-        platforms11[6],
-        platforms11[7],
-        platforms11[8],
+        { platform: platforms11[0], time: 0 },
+        { platform: platforms11[1], time: 1 },
+        { platform: platforms11[2], time: 1.5 },
+        { platform: platforms11[3], time: 0.5 },
+        { platform: platforms11[1], time: 1 },
+        { platform: platforms11[4], time: 1.5 },
+        { platform: platforms11[5], time: 1 },
+        { platform: platforms11[3], time: 2 },
+        { platform: platforms11[1], time: 2 },
+        { platform: platforms11[2], time: 1.5 },
+        { platform: platforms11[3], time: 0.5 },
+        { platform: platforms11[6], time: 1 },
+        { platform: platforms11[7], time: 1.5 },
+        { platform: platforms11[8], time: 1 },
     ],
     color1: "#000000",
     color2: "#740001",
@@ -957,7 +914,6 @@ let platforms12 = [
         width: 200,
         height: 75,
         note: 659.25,
-        time: 1
     },
     {
         x: 250,
@@ -965,7 +921,6 @@ let platforms12 = [
         width: 100,
         height: 75,
         note: 739.99,
-        time: 1
     },
     {
         x: 350,
@@ -973,7 +928,6 @@ let platforms12 = [
         width: 100,
         height: 75,
         note: 783.99,
-        time: 1
     },
     {
         x: 450,
@@ -981,7 +935,6 @@ let platforms12 = [
         width: 100,
         height: 75,
         note: 880,
-        time: 2
     },
     {
         x: 550,
@@ -989,7 +942,6 @@ let platforms12 = [
         width: 200,
         height: 75,
         note: 783.99,
-        time: 1.5
     },
     {
         x: 750,
@@ -997,20 +949,19 @@ let platforms12 = [
         width: 200,
         height: 75,
         note: 739.99,
-        time: 1
     },
 ];
 
 let level12 = {
     platforms: platforms12,
     sequence: [
-        platforms12[0],
-        platforms12[1],
-        platforms12[2],
-        platforms12[3],
-        platforms12[4],
-        platforms12[5],
-        platforms12[0],
+        { platform: platforms12[0], time: 0 },
+        { platform: platforms12[1], time: 1 },
+        { platform: platforms12[2], time: 1 },
+        { platform: platforms12[3], time: 2 },
+        { platform: platforms12[4], time: 1.5 },
+        { platform: platforms12[5], time: 1 },
+        { platform: platforms12[0], time: 1 },
     ],
     color1: "#202040",
     color2: "#543864",
