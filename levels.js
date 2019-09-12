@@ -64,6 +64,7 @@ let platforms1 = [
     }
 ];
 
+// aetyip$qa
 let level1 = {
     platforms: platforms1,
     sequence: [
@@ -136,6 +137,7 @@ let platforms2 = [
     }
 ]
 
+// puetup
 let level2 = {
     platforms: platforms2,
     sequence: [
@@ -199,6 +201,7 @@ let platforms3 = [
     }
 ]
 
+// oooto$
 let level3 = {
     platforms: platforms3,
     sequence: [
@@ -268,6 +271,7 @@ let platforms4 = [
     },
 ]
 
+// peyipeyipeyit
 let level4 = {
     platforms: platforms4,
     sequence: [
@@ -333,6 +337,7 @@ let platforms5 = [
     },
 ]
 
+// aetetutup
 let level5 = {
     platforms: platforms5,
     sequence: [
@@ -447,6 +452,7 @@ let platforms6 = [
     }
 ]
 
+// q$pp$q$pp$ipe
 let level6 = {
     platforms: platforms6,
     sequence: [
@@ -552,6 +558,7 @@ let platforms7 = [
     },
 ]
 
+// pppppppqyip
 let level7 = {
     platforms: platforms7,
     sequence: [
@@ -626,6 +633,7 @@ let platforms8 = [
     },
 ]
 
+// aqiyitiyaqiyitiy
 let level8 = {
     platforms: platforms8,
     sequence: [
@@ -655,7 +663,6 @@ let level8 = {
     color5: "ghostwhite"
 }
 
-// ati$pyeypq$
 let platforms9 = [
     {
         x: 50,
@@ -722,6 +729,7 @@ let platforms9 = [
     }
 ];
 
+// ati$pyeypq$
 let level9 = {
     platforms: platforms9,
     sequence: [
@@ -744,7 +752,6 @@ let level9 = {
     color5: "ghostwhite"
 };
 
-// q$qiyq$qiyq$q
 let platforms10 = [
     {
         x: 50,
@@ -790,6 +797,7 @@ let platforms10 = [
     }
 ];
 
+// q$qiyq$qiyq$q
 let level10 = {
     platforms: platforms10,
     sequence: [
@@ -814,7 +822,6 @@ let level10 = {
     color5: "ghostwhite"
 };
 
-// ayoiyq^iyoitua
 let platforms11 = [
     {
         x: 50,
@@ -881,6 +888,7 @@ let platforms11 = [
     }
 ];
 
+// ayoiyq^iyoitua
 let level11 = {
     platforms: platforms11,
     sequence: [
@@ -906,7 +914,6 @@ let level11 = {
     color5: "ghostwhite"
 }
 
-//tuipiut
 let platforms12 = [
     {
         x: 50,
@@ -952,6 +959,7 @@ let platforms12 = [
     },
 ];
 
+//tuipiut
 let level12 = {
     platforms: platforms12,
     sequence: [
