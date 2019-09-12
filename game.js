@@ -240,6 +240,11 @@ function updateGamepadInput(input) {
         input.yAxis = gamepad.axes[1];
         if (oldYAxis < 0.1 && input.yAxis >= 0.1) input.down = true;
         if (oldYAxis > -0.1 && input.yAxis <= -0.1) input.up = true;
+        if (game.state == GameState.Playing && gamepad.buttons[3].pressed) {
+            game.state = GameState.Playback;
+            game.stateTime = 0;
+        }
+        if (gamepad.buttons[9].pressed) escape();
     }
 }
 
@@ -341,46 +346,46 @@ function onKey(code, value) {
             if (value) input.jump = true;
             break;
         case "KeyQ":
-            if (value) playNote(audioContext, 523.25);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 523.25);
             break;
         case "KeyW":
-            if (value) playNote(audioContext, 554.37);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 554.37);
             break;
         case "KeyE":
-            if (value) playNote(audioContext, 587.33);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 587.33);
             break;
         case "KeyR":
-            if (value) playNote(audioContext, 622.25);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 622.25);
             break;
         case "KeyT":
-            if (value) playNote(audioContext, 659.25);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 659.25);
             break;
         case "KeyY":
-            if (value) playNote(audioContext, 698.46);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 698.46);
             break;
         case "KeyU":
-            if (value) playNote(audioContext, 739.99);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 739.99);
             break;
         case "KeyI":
-            if (value) playNote(audioContext, 783.99);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 783.99);
             break;
         case "KeyO":
-            if (value) playNote(audioContext, 830.61);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 830.61);
             break;
         case "KeyP":
-            if (value) playNote(audioContext, 880);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 880);
             break;
         case "KeyA":
-            if (value) playNote(audioContext, 932.33);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 932.33);
             break;
         case "KeyS":
-            if (value) playNote(audioContext, 987.77);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 987.77);
             break;
         case "KeyD":
-            if (value) playNote(audioContext, 1046.50);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 1046.50);
             break;
         case "KeyF":
-            if (value) playNote(audioContext, 1108.73);
+            if (value && game.state == GameState.FreePlaying) playNote(audioContext, 1108.73);
             break;
         case "Space":
             if (!value) {
@@ -644,7 +649,7 @@ function play() {
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
-    notify(document.getElementById("hint"), "Press Space to see the playback");
+    notify(document.getElementById("hint"), "Press Space (Triangle, Y on controller) to see the playback");
 }
 
 function escape() {
@@ -689,7 +694,7 @@ function lose(game) {
     game.player.state = PlayerState.Air;
     game.next = 0;
     game.state = game.level == freePlayLevel ? GameState.FreePlaying : GameState.Playing;
-    notify(document.getElementById("hint"), "Press Space to see the playback");
+    notify(document.getElementById("hint"), "Press Space (Triangle, Y on controller) to see the playback");
 }
 
 function nextLevel(game) {
