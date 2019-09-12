@@ -338,7 +338,7 @@ function onKey(code, value) {
             input.right = value;
             break;
         case "Enter":
-            input.jump = true;
+            if (value) input.jump = true;
             break;
         case "KeyQ":
             if (value) playNote(audioContext, 523.25);
