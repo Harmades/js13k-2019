@@ -549,7 +549,7 @@ function update(game) {
         if (Math.abs(bestCollisionMatch.width) < Math.abs(bestCollisionMatch.height)) {
             player.dx = 0;
             player.x += bestCollisionMatch.width;
-            player.dy = -0.1;
+            player.dy = 0.166;
             player.state = PlayerState.Wall;
         }
         if (Math.abs(bestCollisionMatch.height) < Math.abs(bestCollisionMatch.width)) {
@@ -705,6 +705,8 @@ function nextLevel(game) {
     if (game.currentLevel == levels.length - 1) { 
         credits();
         game.currentLevel = 0;
+        levelContext.clearRect(0, 0, game.width, game.height);
+        for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
         game.state = GameState.Idle;
     }
     else game.currentLevel++;
