@@ -1067,8 +1067,8 @@ let freePlayPlatforms = [
 let freePlayLevel = {
     platforms: freePlayPlatforms,
     sequence: [],
-    color1: "#543864",
-    color2: "#160f30",
+    color1: "#202040",
+    color2: "#543864",
     color3: "#8b4367",
     color4: "#ff6464",
     color5: "ghostwhite"

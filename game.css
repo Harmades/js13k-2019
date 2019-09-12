@@ -130,6 +130,14 @@ ul {
 }
 
 #songs {
+    position: absolute;
+    left: 0%;
+    top: 2%;
+    display: none;
+}
+
+.song {
+    margin: 8px;
     border: 4px solid black;
     background-color: transparent;
     color: ghostwhite;
@@ -138,11 +146,7 @@ ul {
     cursor: pointer;
     border-color: ghostwhite;
     border-radius: 4px;
-    position: absolute;
-    left: 0%;
-    top: 0%;
     margin: 8px;
-    opacity: 0;
 }
 
 #hint.visible {

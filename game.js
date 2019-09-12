@@ -370,16 +370,16 @@ function onKey(code, value) {
         case "KeyP":
             if (value) playNote(audioContext, 880);
             break;
-        case "BracketLeft":
+        case "KeyA":
             if (value) playNote(audioContext, 932.33);
             break;
-        case "BracketRight":
+        case "KeyS":
             if (value) playNote(audioContext, 987.77);
             break;
-        case "KeyA":
+        case "KeyD":
             if (value) playNote(audioContext, 1046.50);
             break;
-        case "KeyS":
+        case "KeyF":
             if (value) playNote(audioContext, 1108.73);
             break;
         case "Space":
@@ -638,9 +638,9 @@ function play() {
     game.next = 0;
     if (!game.level || game.level == freePlayLevel) {
         game.currentLevel = 0;
-        game.level = levels[11];
-        game.platforms = levels[11].platforms;
-        game.sequence = levels[11].sequence;
+        game.level = levels[0];
+        game.platforms = levels[0].platforms;
+        game.sequence = levels[0].sequence;
         for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     }
     homeMenu.style.display = "none";
@@ -651,6 +651,7 @@ function escape() {
     if (game.state == GameState.FreePlaying) {
         game.state = GameState.Idle;
         document.getElementById("home").style.display = "block";
+        document.getElementById("songs").style.display = "none";
         levelContext.clearRect(0, 0, game.width, game.height);
         playerContext.clearRect(0, 0, game.width, game.height);
     }
@@ -677,6 +678,7 @@ function freePlay() {
     levelContext.clearRect(0, 0, game.width, game.height);
     for (let platform of game.platforms) renderPlatform(levelContext, platform, game.level);
     document.getElementById("home").style.display = "none";
+    document.getElementById("songs").style.display = "block";
 }
 
 function lose(game) {
